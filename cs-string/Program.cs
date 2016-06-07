@@ -165,5 +165,15 @@ namespace orez.ostring {
 			string t = p.Length > 0 ? p[0] : "";
 			return s.StartsWith(t) ? "1" : "0";
 		}
+
+		/// <summary>
+		/// Convert input string to upper case.
+		/// </summary>
+		/// <param name="s">Input string.</param>
+		/// <param name="p">NA.</param>
+		/// <returns>Upper cased string.</returns>
+		private static string UpperCase(string s, string[] p) {
+			return s.ToUpper();
+		}
 	}
 }
