@@ -227,13 +227,14 @@ namespace orez.ostring {
 			return s.StartsWith(t) ? "1" : "0";
 		}
 
+		// TODO: can we make this one function for all?
 		/// <summary>
 		/// Convert input string to unix line ending.
 		/// </summary>
 		/// <param name="s">Input string.</param>
 		/// <param name="p">NA.</param>
 		/// <returns>Unix lined string.</returns>
-		private static string UnixLine(string s, string[] p) {
+		private static string LfLine(string s, string[] p) {
 			return s.Replace("\r\n", "\n").Replace('\r', '\n');
 		}
 
