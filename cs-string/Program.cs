@@ -86,8 +86,25 @@ namespace orez.ostring {
 			string t = p.Length > 0 ? p[0] : "";
 			if(p.Length > 1) int.TryParse(p[1], out i);
 			if(p.Length > 2) int.TryParse(p[2], out d);
+			i = i > s.Length ? s.Length : i;
 			while(i < 0) i += s.Length;
 			return (d >= 0 ? s.IndexOf(t, i) : s.LastIndexOf(t, i)).ToString();
+		}
+
+		/// <summary>
+		/// Remove part of input string.
+		/// </summary>
+		/// <param name="s">Input string.</param>
+		/// <param name="p">length, index.</param>
+		/// <returns>Removed string.</returns>
+		private static string Remove(string s, string[] p) {
+			int l = 0;
+			if(p.Length > 0) int.TryParse(p[0], out l);
+			int i = l > s.Length ? 0 : s.Length - l;
+			if(p.Length > 1) int.TryParse(p[1], out i);
+			i = i > s.Length ? s.Length : i;
+			while(i < 0) i += s.Length;
+			return s.Substring(0, i - 0) + s.Substring(i + l);
 		}
 
 		/// <summary>
