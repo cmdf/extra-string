@@ -104,7 +104,7 @@ namespace orez.ostring {
 			if(p.Length > 1) int.TryParse(p[1], out i);
 			i = i > s.Length ? s.Length : i;
 			while(i < 0) i += s.Length;
-			return s.Substring(0, i - 0) + s.Substring(i + l);
+			return s.Remove(i, l);
 		}
 
 		/// <summary>
