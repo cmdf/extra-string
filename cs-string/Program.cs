@@ -1,15 +1,29 @@
 ﻿using System;
+using System.IO;
+using System.Collections.Generic;
 
 namespace orez.ostring {
 	class Program {
+
+		// type
+		public delegate string Fn(string s, string[] p);
+
+		// data
+		private static IDictionary<string, Fn> Cmd = new Dictionary<string, Fn> {
+			["add"] = new Fn(Add), ["compare"] = new Fn(Compare), ["endswith"] = new Fn(EndsWith),
+			["find"] = new Fn(Find), ["remove"] = new Fn(Remove), ["replace"] = new Fn(Replace),
+			["reverse"] = new Fn(Reverse), ["size"] = new Fn(Size)
+		};
 
 		/// <summary>
 		/// Smack that. Oooo.
 		/// </summary>
 		/// <param name="args">Input parameters.</param>
 		static void Main(string[] args) {
-			string s = "abcd";
-			s = s.Substring(3, 0);
+			string s = new StreamReader(Console.OpenStandardInput()).ReadToEnd();
+			string[] p = new string[args.Length - 1];
+			Array.Copy(args, 1, p, 0, p.Length);
+			Console.WriteLine(Cmd[args[0].ToLower()](s, p));
 		}
 
 		private static string Run(string s, string[] p) {
@@ -46,7 +60,7 @@ namespace orez.ostring {
 			b = b <= s.Length ? b : s.Length;
 			bool rev = a > b;
 			s = s.Substring(rev? b : a, Math.Abs(b - a));
-			return rev ? Reverse(s) : s;
+			return rev ? Reverse(s, null) : s;
 		}
 
 		/// <summary>
