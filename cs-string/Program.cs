@@ -53,14 +53,22 @@ namespace orez.ostring {
 			return s.Insert(i, t);
 		}
 
-		private static string At(string s, int a, int b) {
-			a = a > 0 ? a : 0;
-			a = a <= s.Length ? a : s.Length;
-			b = b > 0 ? b : 0;
-			b = b <= s.Length ? b : s.Length;
-			bool rev = a > b;
-			s = s.Substring(rev? b : a, Math.Abs(b - a));
-			return rev ? Reverse(s, null) : s;
+		/// <summary>
+		/// Get a part of input string.
+		/// </summary>
+		/// <param name="s">Input string.</param>
+		/// <param name="p">index, length.</param>
+		/// <returns>Part of string.</returns>
+		private static string Get(string s, string[] p) {
+			int i = 0, l = 1;
+			if(p.Length > 0) int.TryParse(p[0], out i);
+			if(p.Length > 1) int.TryParse(p[1], out l);
+			i = i > s.Length ? s.Length : i;
+			while(i < 0) i += s.Length;
+			int e = i + l;
+			e = e > s.Length ? s.Length : e;
+			while(e < 0) e += s.Length;
+			return s.Substring(i, e - i);
 		}
 
 		/// <summary>
@@ -123,6 +131,23 @@ namespace orez.ostring {
 		/// <returns>Lower cased string.</returns>
 		private static string LowerCase(string s, string[] p) {
 			return s.ToLower();
+		}
+
+		/// <summary>
+		/// Get a specified range of input string.
+		/// </summary>
+		/// <param name="s">Input string.</param>
+		/// <param name="p">start, end.</param>
+		/// <returns>Part of string.</returns>
+		private static string Range(string s, string[] p) {
+			int i = 0, e = s.Length;
+			if(p.Length > 0) int.TryParse(p[0], out i);
+			if(p.Length > 1) int.TryParse(p[1], out e);
+			i = i > s.Length ? s.Length : i;
+			while(i < 0) i += s.Length;
+			e = e > s.Length ? s.Length : e;
+			while(e < 0) e += s.Length;
+			return s.Substring(i, e - i);
 		}
 
 		/// <summary>
