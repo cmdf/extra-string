@@ -106,6 +106,16 @@ namespace orez.ostring {
 		}
 
 		/// <summary>
+		/// Convert input string to lower case.
+		/// </summary>
+		/// <param name="s">Input string.</param>
+		/// <param name="p">NA.</param>
+		/// <returns>Lower cased string.</returns>
+		private static string LowerCase(string s, string[] p) {
+			return s.ToLower();
+		}
+
+		/// <summary>
 		/// Remove part of input string.
 		/// </summary>
 		/// <param name="s">Input string.</param>
