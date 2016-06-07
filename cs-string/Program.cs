@@ -34,6 +34,11 @@ namespace orez.ostring {
 			return rev ? Reverse(s) : s;
 		}
 
+		/// <summary>
+		/// Reverse a string.
+		/// </summary>
+		/// <param name="s">Input string.</param>
+		/// <returns>Reversed string.</returns>
 		private static string Reverse(string s) {
 			char[] c = s.ToCharArray();
 			Array.Reverse(c);
