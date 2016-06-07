@@ -228,6 +228,16 @@ namespace orez.ostring {
 		}
 
 		/// <summary>
+		/// Convert input string to unix line ending.
+		/// </summary>
+		/// <param name="s">Input string.</param>
+		/// <param name="p">NA.</param>
+		/// <returns>Unix lined string.</returns>
+		private static string UnixLine(string s, string[] p) {
+			return s.Replace("\r\n", "\n").Replace('\r', '\n');
+		}
+
+		/// <summary>
 		/// Convert input string to upper case.
 		/// </summary>
 		/// <param name="s">Input string.</param>
