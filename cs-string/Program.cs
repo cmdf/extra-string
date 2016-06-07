@@ -48,8 +48,26 @@ namespace orez.ostring {
 		private static string Compare(string s, string[] p) {
 			return s.CompareTo(p.Length > 0 ? p[0] : "").ToString();
 		}
-		
 
+
+		
+		/// <summary>
+		/// Check whether input string ends with suffix.
+		/// </summary>
+		/// <param name="s">Input string.</param>
+		/// <param name="p">suffix.</param>
+		/// <returns>1 if true, 0 otherwise.</returns>
+		private static string EndsWith(string s, string[] p) {
+			string t = p.Length > 0 ? p[0] : "";
+			return s.EndsWith(t) ? "1" : "0";
+		}
+
+		/// <summary>
+		/// Find index of string in the input string.
+		/// </summary>
+		/// <param name="s">Input string.</param>
+		/// <param name="p">start, direction.</param>
+		/// <returns></returns>
 		private static string Find(string s, string[] p) {
 			int i = 0, d = 1;
 			string t = p.Length > 0 ? p[0] : "";
@@ -63,7 +81,7 @@ namespace orez.ostring {
 		/// Reverse a string.
 		/// </summary>
 		/// <param name="s">Input string.</param>
-		/// <param name="p">Input parameters.</param>
+		/// <param name="p">NA.</param>
 		/// <returns>Reversed string.</returns>
 		private static string Reverse(string s, string[] p) {
 			char[] c = s.ToCharArray();
@@ -75,7 +93,7 @@ namespace orez.ostring {
 		/// Get the size of a string.
 		/// </summary>
 		/// <param name="s">Input string.</param>
-		/// <param name="p">Input parameters.</param>
+		/// <param name="p">NA.</param>
 		/// <returns>Size of string.</returns>
 		private static string Size(string s, string[] p) {
 			return s.Length.ToString();
