@@ -24,6 +24,16 @@ namespace orez.ostring {
 			return null;
 		}
 
+		private static string At(string s, int a, int b) {
+			a = a > 0 ? a : 0;
+			a = a <= s.Length ? a : s.Length;
+			b = b > 0 ? b : 0;
+			b = b <= s.Length ? b : s.Length;
+			bool rev = a > b;
+			s = s.Substring(rev? b : a, Math.Abs(b - a));
+			return rev ? Reverse(s) : s;
+		}
+
 		private static string Reverse(string s) {
 			char[] c = s.ToCharArray();
 			Array.Reverse(c);
