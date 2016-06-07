@@ -87,6 +87,22 @@ namespace orez.ostring {
 		}
 
 		/// <summary>
+		/// Copies input string specified number of times.
+		/// </summary>
+		/// <param name="s">Input string.</param>
+		/// <param name="p">times.</param>
+		/// <returns>Copied string.</returns>
+		private static string Copy(string s, string[] p) {
+			int n = 0;
+			if(p.Length > 0) int.TryParse(p[0], out n);
+			n = n > 0 ? n : 0;
+			string t = "";
+			for(int i = 0; i < n; i++)
+				t += s;
+			return t;
+		}
+
+		/// <summary>
 		/// Check whether input string ends with suffix.
 		/// </summary>
 		/// <param name="s">Input string.</param>
