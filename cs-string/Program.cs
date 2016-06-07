@@ -34,6 +34,10 @@ namespace orez.ostring {
 			return rev ? Reverse(s) : s;
 		}
 
+		private static string Compare(string s, string t) {
+			return s.CompareTo(t).ToString();
+		}
+
 		/// <summary>
 		/// Reverse a string.
 		/// </summary>
