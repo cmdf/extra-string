@@ -106,6 +106,16 @@ namespace orez.ostring {
 		}
 
 		/// <summary>
+		/// Uses input string as format to embed parameter strings.
+		/// </summary>
+		/// <param name="s">Input string.</param>
+		/// <param name="p">parameters.</param>
+		/// <returns>Formatted string.</returns>
+		private static string Format(string s, string[] p) {
+			return string.Format(s, p);
+		}
+
+		/// <summary>
 		/// Convert input string to lower case.
 		/// </summary>
 		/// <param name="s">Input string.</param>
