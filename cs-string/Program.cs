@@ -108,6 +108,18 @@ namespace orez.ostring {
 		}
 
 		/// <summary>
+		/// Replace a search string with new string in input string.
+		/// </summary>
+		/// <param name="s">Input string</param>
+		/// <param name="p">search, new.</param>
+		/// <returns>Replaced string.</returns>
+		private static string Replace(string s, string[] p) {
+			string t = p.Length > 0 ? p[0] : s + " ";
+			string u = p.Length > 1 ? p[1] : "";
+			return s.Replace(t, u);
+		}
+
+		/// <summary>
 		/// Reverse a string.
 		/// </summary>
 		/// <param name="s">Input string.</param>
