@@ -45,16 +45,27 @@ namespace orez.ostring {
 		///   == 0 - if both the strings are equal.
 		/// &lt; 0 - if 1st string comes before 2nd string.
 		/// </returns>
-		private static string Compare(string s, string t) {
-			return s.CompareTo(t).ToString();
+		private static string Compare(string s, string[] p) {
+			return s.CompareTo(p.Length > 0 ? p[0] : "").ToString();
+		}
+		
+
+		private static string Find(string s, string[] p) {
+			int i = 0, d = 1;
+			string t = p.Length > 0 ? p[0] : "";
+			if(p.Length > 1) int.TryParse(p[1], out i);
+			if(p.Length > 2) int.TryParse(p[2], out d);
+			while(i < 0) i += s.Length;
+			return (d >= 0 ? s.IndexOf(t, i) : s.LastIndexOf(t, i)).ToString();
 		}
 
 		/// <summary>
 		/// Reverse a string.
 		/// </summary>
 		/// <param name="s">Input string.</param>
+		/// <param name="p">Input parameters.</param>
 		/// <returns>Reversed string.</returns>
-		private static string Reverse(string s) {
+		private static string Reverse(string s, string[] p) {
 			char[] c = s.ToCharArray();
 			Array.Reverse(c);
 			return new string(c);
@@ -64,8 +75,9 @@ namespace orez.ostring {
 		/// Get the size of a string.
 		/// </summary>
 		/// <param name="s">Input string.</param>
+		/// <param name="p">Input parameters.</param>
 		/// <returns>Size of string.</returns>
-		private static string Size(string s) {
+		private static string Size(string s, string[] p) {
 			return s.Length.ToString();
 		}
 	}
