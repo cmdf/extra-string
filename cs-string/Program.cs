@@ -23,6 +23,21 @@ namespace orez.ostring {
 			}
 			return null;
 		}
+		
+		/// <summary>
+		/// Add a string to input string.
+		/// </summary>
+		/// <param name="s">Input string.</param>
+		/// <param name="p">add, index.</param>
+		/// <returns>Added string.</returns>
+		private static string Add(string s, string[] p) {
+			int i = s.Length;
+			string t = p.Length > 0 ? p[0] : "";
+			if(p.Length > 1) int.TryParse(p[1], out i);
+			i = i > s.Length ? s.Length : i;
+			while(i < 0) i += s.Length;
+			return s.Insert(i, t);
+		}
 
 		private static string At(string s, int a, int b) {
 			a = a > 0 ? a : 0;
@@ -49,8 +64,6 @@ namespace orez.ostring {
 			return s.CompareTo(p.Length > 0 ? p[0] : "").ToString();
 		}
 
-
-		
 		/// <summary>
 		/// Check whether input string ends with suffix.
 		/// </summary>
