@@ -154,5 +154,16 @@ namespace orez.ostring {
 		private static string Size(string s, string[] p) {
 			return s.Length.ToString();
 		}
+		
+		/// <summary>
+		/// Check whether input string starts with prefix.
+		/// </summary>
+		/// <param name="s">Input string.</param>
+		/// <param name="p">prefix.</param>
+		/// <returns>1 if true, 0 otherwise.</returns>
+		private static string StartsWith(string s, string[] p) {
+			string t = p.Length > 0 ? p[0] : "";
+			return s.StartsWith(t) ? "1" : "0";
+		}
 	}
 }
