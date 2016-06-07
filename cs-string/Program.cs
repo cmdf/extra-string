@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace cs_string {
+namespace orez.ostring {
 	class Program {
 		static void Main(string[] args) {
 		}
