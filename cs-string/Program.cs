@@ -44,5 +44,10 @@ namespace orez.ostring {
 			Array.Reverse(c);
 			return new string(c);
 		}
+
+
+		private static string Size(string s) {
+			return s.Length.ToString();
+		}
 	}
 }
