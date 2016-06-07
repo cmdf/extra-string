@@ -34,6 +34,17 @@ namespace orez.ostring {
 			return rev ? Reverse(s) : s;
 		}
 
+		/// <summary>
+		/// Compare two strings.
+		/// </summary>
+		/// <param name="s">1st input string.</param>
+		/// <param name="t">2nd input string.</param>
+		/// <returns>
+		/// A number that is:
+		/// &gt; 0 - if 1st string comes after 2nd string.
+		///   == 0 - if both the strings are equal.
+		/// &lt; 0 - if 1st string comes before 2nd string.
+		/// </returns>
 		private static string Compare(string s, string t) {
 			return s.CompareTo(t).ToString();
 		}
