@@ -45,7 +45,11 @@ namespace orez.ostring {
 			return new string(c);
 		}
 
-
+		/// <summary>
+		/// Get the size of a string.
+		/// </summary>
+		/// <param name="s">Input string.</param>
+		/// <returns>Size of string.</returns>
 		private static string Size(string s) {
 			return s.Length.ToString();
 		}
