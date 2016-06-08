@@ -60,14 +60,10 @@ namespace orez.ostring {
 		/// <param name="p">index, length.</param>
 		/// <returns>Part of string.</returns>
 		private static string Get(string s, string[] p) {
-			int i = 0, l = 1;
-			if(p.Length > 0) int.TryParse(p[0], out i);
-			if(p.Length > 1) int.TryParse(p[1], out l);
-			i = i > s.Length ? s.Length : i;
-			while(i < 0) i += s.Length;
-			int e = i + l;
-			e = e > s.Length ? s.Length : e;
-			while(e < 0) e += s.Length;
+			int i = GetInt(p, 0);
+			int l = GetInt(p, 1, 1);
+			i = Index(s, i);
+			int e = Index(s, i + l);
 			return s.Substring(i, e - i);
 		}
 
