@@ -154,7 +154,8 @@ namespace orez.ostring {
 		/// <param name="p">length, index.</param>
 		/// <returns>Removed string.</returns>
 		private static string Remove(string s, string[] p) {
-			int l = Int(p, 0), i = Indx(Int(p, 1, l > s.Length ? 0 : s.Length - l), s);
+			int l = Indx(Int(p, 0), s);
+			int i = Indx(Int(p, 1, s.Length - l), s);
 			return s.Remove(i, l);
 		}
 
