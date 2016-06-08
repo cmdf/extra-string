@@ -45,7 +45,7 @@ namespace orez.ostring {
 		/// <param name="p">add, index.</param>
 		/// <returns>Added string.</returns>
 		private static string Add(string s, string[] p) {
-			string t = GetStr(p, 0);
+			string t = Str(p, 0);
 			int i = Int(p, 1, s.Length);
 			i = Index(s, i);
 			return s.Insert(i, t);
@@ -102,7 +102,7 @@ namespace orez.ostring {
 		/// <param name="p">suffix.</param>
 		/// <returns>1 if true, 0 otherwise.</returns>
 		private static string EndsWith(string s, string[] p) {
-			string t = GetStr(p, 0);
+			string t = Str(p, 0);
 			return s.EndsWith(t) ? "1" : "0";
 		}
 
@@ -113,7 +113,7 @@ namespace orez.ostring {
 		/// <param name="p">start, direction.</param>
 		/// <returns></returns>
 		private static string Find(string s, string[] p) {
-			string t = GetStr(p, 0);
+			string t = Str(p, 0);
 			int i = Int(p, 1);
 			int d = Int(p, 2, 1);
 			i = Index(s, i);
@@ -174,8 +174,8 @@ namespace orez.ostring {
 		/// <param name="p">search, new.</param>
 		/// <returns>Replaced string.</returns>
 		private static string Replace(string s, string[] p) {
-			string t = GetStr(p, 0, s + " ");
-			string u = GetStr(p, 1);
+			string t = Str(p, 0, s + " ");
+			string u = Str(p, 1);
 			return s.Replace(t, u);
 		}
 
@@ -208,7 +208,7 @@ namespace orez.ostring {
 		/// <param name="p">prefix.</param>
 		/// <returns>1 if true, 0 otherwise.</returns>
 		private static string StartsWith(string s, string[] p) {
-			string t = GetStr(p, 0);
+			string t = Str(p, 0);
 			return s.StartsWith(t) ? "1" : "0";
 		}
 
@@ -252,7 +252,7 @@ namespace orez.ostring {
 		/// <param name="i">Array index.</param>
 		/// <param name="v">Optional. Default value.</param>
 		/// <returns>String value at specified index, or default value.</returns>
-		private static string GetStr(string[] a, int i, string v="") {
+		private static string Str(string[] a, int i, string v="") {
 			return a.Length > i ? a[i] : v;
 		}
 
