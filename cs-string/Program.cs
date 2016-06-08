@@ -57,10 +57,8 @@ namespace orez.ostring {
 		/// <param name="p">index, length.</param>
 		/// <returns>Part of string.</returns>
 		private static string Get(string s, string[] p) {
-			int i = Int(p, 0);
-			int l = Int(p, 1, 1);
-			i = Indx(s, i);
-			int e = Indx(s, i + l);
+			int i = Indx(Int(p, 0), s);
+			int e = Indx(i + Int(p, 1, 1), s);
 			return s.Substring(i, e - i);
 		}
 
