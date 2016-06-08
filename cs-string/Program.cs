@@ -147,10 +147,7 @@ namespace orez.ostring {
 		/// <param name="p">start, end.</param>
 		/// <returns>Part of string.</returns>
 		private static string Range(string s, string[] p) {
-			int i = Int(p, 0);
-			int e = Int(p, 1, s.Length);
-			i = Indx(s, i);
-			e = Indx(s, e);
+			int i = Indx(Int(p, 0), s), e = Indx(Int(p, 1, s.Length), s);
 			return s.Substring(i, e - i);
 		}
 
@@ -161,9 +158,7 @@ namespace orez.ostring {
 		/// <param name="p">length, index.</param>
 		/// <returns>Removed string.</returns>
 		private static string Remove(string s, string[] p) {
-			int l = Int(p, 0);
-			int i = Int(p, 1, l > s.Length ? 0 : s.Length - l);
-			i = Indx(s, i);
+			int l = Int(p, 0), i = Indx(Int(p, 1, l > s.Length ? 0 : s.Length - l), s);
 			return s.Remove(i, l);
 		}
 
@@ -174,8 +169,7 @@ namespace orez.ostring {
 		/// <param name="p">search, new.</param>
 		/// <returns>Replaced string.</returns>
 		private static string Replace(string s, string[] p) {
-			string t = Str(p, 0, s + " ");
-			string u = Str(p, 1);
+			string t = Str(p, 0, " "), u = Str(p, 1);
 			return s.Replace(t, u);
 		}
 
@@ -239,7 +233,7 @@ namespace orez.ostring {
 		/// <param name="s">String value.</param>
 		/// <param name="i">Index in string.</param>
 		/// <returns>Ranged index.</returns>
-		private static int Indx(string s, int i) {
+		private static int Indx(int i, string s) {
 			i = i > s.Length ? s.Length : i;
 			while(i < 0) i += s.Length;
 			return i;
