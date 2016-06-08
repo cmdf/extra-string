@@ -189,8 +189,8 @@ namespace orez.ostring {
 		/// <param name="p">search, new.</param>
 		/// <returns>Replaced string.</returns>
 		private static string Replace(string s, string[] p) {
-			string t = p.Length > 0 ? p[0] : s + " ";
-			string u = p.Length > 1 ? p[1] : "";
+			string t = GetStr(p, 0, s + " ");
+			string u = GetStr(p, 1);
 			return s.Replace(t, u);
 		}
 
