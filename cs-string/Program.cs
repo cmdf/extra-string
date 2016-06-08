@@ -258,5 +258,7 @@ namespace orez.ostring {
 			if(a.Length > i) int.TryParse(a[i], out v);
 			return v;
 		}
+
+		// split ascii pad trim isalnum (improve replace) join
 	}
 }
