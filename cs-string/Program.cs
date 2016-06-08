@@ -111,9 +111,7 @@ namespace orez.ostring {
 		/// <returns></returns>
 		private static string Find(string s, string[] p) {
 			string t = Str(p, 0);
-			int i = Int(p, 1);
-			int d = Int(p, 2, 1);
-			i = Indx(s, i);
+			int i = Indx(Int(p, 1), s), d = Int(p, 1);
 			return (d >= 0 ? s.IndexOf(t, i) : s.LastIndexOf(t, i)).ToString();
 		}
 
