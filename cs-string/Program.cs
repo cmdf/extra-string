@@ -46,8 +46,7 @@ namespace orez.ostring {
 		/// <returns>Added string.</returns>
 		private static string Add(string s, string[] p) {
 			string t = Str(p, 0);
-			int i = Int(p, 1, s.Length);
-			i = Indx(s, i);
+			int i = Indx(Int(p, 1, s.Length), s);
 			return s.Insert(i, t);
 		}
 
