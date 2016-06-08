@@ -258,5 +258,17 @@ namespace orez.ostring {
 		private static string GetStr(string[] a, int i, string v="") {
 			return a.Length > i ? a[i] : v;
 		}
+
+		/// <summary>
+		/// Get int from specified index of string array.
+		/// </summary>
+		/// <param name="a">String array.</param>
+		/// <param name="i">Array index.</param>
+		/// <param name="v">Optional. Default value.</param>
+		/// <returns>Int value at specified index, or default value.</returns>
+		private static int GetInt(string[] a, int i, int v=0) {
+			if(a.Length > i) int.TryParse(a[i], out v);
+			return v;
+		}
 	}
 }
