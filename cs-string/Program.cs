@@ -156,13 +156,10 @@ namespace orez.ostring {
 		/// <param name="p">start, end.</param>
 		/// <returns>Part of string.</returns>
 		private static string Range(string s, string[] p) {
-			int i = 0, e = s.Length;
-			if(p.Length > 0) int.TryParse(p[0], out i);
-			if(p.Length > 1) int.TryParse(p[1], out e);
-			i = i > s.Length ? s.Length : i;
-			while(i < 0) i += s.Length;
-			e = e > s.Length ? s.Length : e;
-			while(e < 0) e += s.Length;
+			int i = GetInt(p, 0);
+			int e = GetInt(p, 1, s.Length);
+			i = Index(s, i);
+			e = Index(s, e);
 			return s.Substring(i, e - i);
 		}
 
