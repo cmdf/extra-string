@@ -74,7 +74,8 @@ namespace orez.ostring {
 		/// &lt; 0 - if 1st string comes before 2nd string.
 		/// </returns>
 		private static string Compare(string s, string[] p) {
-			return s.CompareTo(p.Length > 0 ? p[0] : "").ToString();
+			string t = Str(p, 0);
+			return s.CompareTo(t).ToString();
 		}
 
 		/// <summary>
