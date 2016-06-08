@@ -46,7 +46,7 @@ namespace orez.ostring {
 		/// <returns>Added string.</returns>
 		private static string Add(string s, string[] p) {
 			string t = GetStr(p, 0);
-			int i = GetInt(p, 1, s.Length);
+			int i = Int(p, 1, s.Length);
 			i = Index(s, i);
 			return s.Insert(i, t);
 		}
@@ -58,8 +58,8 @@ namespace orez.ostring {
 		/// <param name="p">index, length.</param>
 		/// <returns>Part of string.</returns>
 		private static string Get(string s, string[] p) {
-			int i = GetInt(p, 0);
-			int l = GetInt(p, 1, 1);
+			int i = Int(p, 0);
+			int l = Int(p, 1, 1);
 			i = Index(s, i);
 			int e = Index(s, i + l);
 			return s.Substring(i, e - i);
@@ -87,7 +87,7 @@ namespace orez.ostring {
 		/// <param name="p">times.</param>
 		/// <returns>Copied string.</returns>
 		private static string Copy(string s, string[] p) {
-			int n = GetInt(p, 0);
+			int n = Int(p, 0);
 			n = n > 0 ? n : 0;
 			string t = "";
 			for(int i = 0; i < n; i++)
@@ -114,8 +114,8 @@ namespace orez.ostring {
 		/// <returns></returns>
 		private static string Find(string s, string[] p) {
 			string t = GetStr(p, 0);
-			int i = GetInt(p, 1);
-			int d = GetInt(p, 2, 1);
+			int i = Int(p, 1);
+			int d = Int(p, 2, 1);
 			i = Index(s, i);
 			return (d >= 0 ? s.IndexOf(t, i) : s.LastIndexOf(t, i)).ToString();
 		}
@@ -147,8 +147,8 @@ namespace orez.ostring {
 		/// <param name="p">start, end.</param>
 		/// <returns>Part of string.</returns>
 		private static string Range(string s, string[] p) {
-			int i = GetInt(p, 0);
-			int e = GetInt(p, 1, s.Length);
+			int i = Int(p, 0);
+			int e = Int(p, 1, s.Length);
 			i = Index(s, i);
 			e = Index(s, e);
 			return s.Substring(i, e - i);
@@ -161,8 +161,8 @@ namespace orez.ostring {
 		/// <param name="p">length, index.</param>
 		/// <returns>Removed string.</returns>
 		private static string Remove(string s, string[] p) {
-			int l = GetInt(p, 0);
-			int i = GetInt(p, 1, l > s.Length ? 0 : s.Length - l);
+			int l = Int(p, 0);
+			int i = Int(p, 1, l > s.Length ? 0 : s.Length - l);
 			i = Index(s, i);
 			return s.Remove(i, l);
 		}
@@ -263,7 +263,7 @@ namespace orez.ostring {
 		/// <param name="i">Array index.</param>
 		/// <param name="v">Optional. Default value.</param>
 		/// <returns>Int value at specified index, or default value.</returns>
-		private static int GetInt(string[] a, int i, int v=0) {
+		private static int Int(string[] a, int i, int v=0) {
 			if(a.Length > i) int.TryParse(a[i], out v);
 			return v;
 		}
