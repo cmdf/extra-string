@@ -175,8 +175,7 @@ namespace orez.ostring {
 		private static string Remove(string s, string[] p) {
 			int l = GetInt(p, 0);
 			int i = GetInt(p, 1, l > s.Length ? 0 : s.Length - l);
-			i = i > s.Length ? s.Length : i;
-			while(i < 0) i += s.Length;
+			i = Index(s, i);
 			return s.Remove(i, l);
 		}
 
@@ -244,6 +243,18 @@ namespace orez.ostring {
 		/// <returns>Upper cased string.</returns>
 		private static string UpperCase(string s, string[] p) {
 			return s.ToUpper();
+		}
+
+		/// <summary>
+		/// Get ranged index for specified string.
+		/// </summary>
+		/// <param name="s">String value.</param>
+		/// <param name="i">Index in string.</param>
+		/// <returns>Ranged index.</returns>
+		private static int Index(string s, int i) {
+			i = i > s.Length ? s.Length : i;
+			while(i < 0) i += s.Length;
+			return i;
 		}
 
 		/// <summary>
