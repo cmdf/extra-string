@@ -173,10 +173,8 @@ namespace orez.ostring {
 		/// <param name="p">length, index.</param>
 		/// <returns>Removed string.</returns>
 		private static string Remove(string s, string[] p) {
-			int l = 0;
-			if(p.Length > 0) int.TryParse(p[0], out l);
-			int i = l > s.Length ? 0 : s.Length - l;
-			if(p.Length > 1) int.TryParse(p[1], out i);
+			int l = GetInt(p, 0);
+			int i = GetInt(p, 1, l > s.Length ? 0 : s.Length - l);
 			i = i > s.Length ? s.Length : i;
 			while(i < 0) i += s.Length;
 			return s.Remove(i, l);
