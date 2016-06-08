@@ -109,7 +109,7 @@ namespace orez.ostring {
 		/// <param name="p">suffix.</param>
 		/// <returns>1 if true, 0 otherwise.</returns>
 		private static string EndsWith(string s, string[] p) {
-			string t = p.Length > 0 ? p[0] : "";
+			string t = GetStr(p, 0);
 			return s.EndsWith(t) ? "1" : "0";
 		}
 
