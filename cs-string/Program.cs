@@ -120,12 +120,10 @@ namespace orez.ostring {
 		/// <param name="p">start, direction.</param>
 		/// <returns></returns>
 		private static string Find(string s, string[] p) {
-			int i = 0, d = 1;
-			string t = p.Length > 0 ? p[0] : "";
-			if(p.Length > 1) int.TryParse(p[1], out i);
-			if(p.Length > 2) int.TryParse(p[2], out d);
-			i = i > s.Length ? s.Length : i;
-			while(i < 0) i += s.Length;
+			string t = GetStr(p, 0);
+			int i = GetInt(p, 1);
+			int d = GetInt(p, 2, 1);
+			i = Index(s, i);
 			return (d >= 0 ? s.IndexOf(t, i) : s.LastIndexOf(t, i)).ToString();
 		}
 
