@@ -223,7 +223,7 @@ namespace orez.ostring {
 		/// <param name="p">prefix.</param>
 		/// <returns>1 if true, 0 otherwise.</returns>
 		private static string StartsWith(string s, string[] p) {
-			string t = p.Length > 0 ? p[0] : "";
+			string t = GetStr(p, 0);
 			return s.StartsWith(t) ? "1" : "0";
 		}
 
@@ -246,6 +246,17 @@ namespace orez.ostring {
 		/// <returns>Upper cased string.</returns>
 		private static string UpperCase(string s, string[] p) {
 			return s.ToUpper();
+		}
+
+		/// <summary>
+		/// Get string from specified index of string array.
+		/// </summary>
+		/// <param name="a">String array.</param>
+		/// <param name="i">Array index.</param>
+		/// <param name="v">Optional. Default value.</param>
+		/// <returns>String value at specified index, or default value.</returns>
+		private static string GetStr(string[] a, int i, string v="") {
+			return a.Length > i ? a[i] : v;
 		}
 	}
 }
