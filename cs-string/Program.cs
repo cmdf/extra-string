@@ -142,7 +142,8 @@ namespace orez.ostring {
 		/// <param name="p">start, end.</param>
 		/// <returns>Part of string.</returns>
 		private static string Range(string s, string[] p) {
-			int i = Indx(Int(p, 0), s), e = Indx(Int(p, 1, s.Length), s);
+			int i = Indx(Int(p, 0), s);
+			int e = Indx(Int(p, 1, s.Length), s);
 			return s.Substring(i, e - i);
 		}
 
