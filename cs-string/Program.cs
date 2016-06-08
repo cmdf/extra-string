@@ -259,6 +259,8 @@ namespace orez.ostring {
 			return v;
 		}
 
-		// split ascii pad trim isalnum (improve replace) join
+		// split ascii pad trim isalnum (improve replace) join isint isdecimal hextoint
+		// multi-line operate, input stream operate
+		
 	}
 }
