@@ -93,8 +93,7 @@ namespace orez.ostring {
 		/// <param name="p">times.</param>
 		/// <returns>Copied string.</returns>
 		private static string Copy(string s, string[] p) {
-			int n = 0;
-			if(p.Length > 0) int.TryParse(p[0], out n);
+			int n = GetInt(p, 0);
 			n = n > 0 ? n : 0;
 			string t = "";
 			for(int i = 0; i < n; i++)
