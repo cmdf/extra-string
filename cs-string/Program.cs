@@ -68,7 +68,7 @@ namespace orez.ostring {
 		/// <param name="s">Input string.</param>
 		/// <param name="p">add, index.</param>
 		/// <returns>Added string.</returns>
-		private static string Add(string s, string[] p) {
+		private static string Add(string s, string[] p, bool re) {
 			string t = Str(p, 0);
 			int i = Indx(Int(p, 1, s.Length), s);
 			return s.Insert(i, t);
@@ -79,7 +79,7 @@ namespace orez.ostring {
 		/// <param name="s">Input string.</param>
 		/// <param name="p">index, length.</param>
 		/// <returns>Part of string.</returns>
-		private static string Get(string s, string[] p) {
+		private static string Get(string s, string[] p, bool re) {
 			int i = Indx(Int(p, 0), s);
 			int e = Indx(i + Int(p, 1, 1), s);
 			return s.Substring(i, e - i);
@@ -95,7 +95,7 @@ namespace orez.ostring {
 		///   == 0 - if both the strings are equal.
 		/// &lt; 0 - if 1st string comes before 2nd string.
 		/// </returns>
-		private static string Compare(string s, string[] p) {
+		private static string Compare(string s, string[] p, bool re) {
 			string t = Str(p, 0);
 			return s.CompareTo(t).ToString();
 		}
@@ -105,7 +105,7 @@ namespace orez.ostring {
 		/// <param name="s">Input string.</param>
 		/// <param name="p">times.</param>
 		/// <returns>Copied string.</returns>
-		private static string Copy(string s, string[] p) {
+		private static string Copy(string s, string[] p, bool re) {
 			string t = "";
 			int n = Math.Abs(Int(p, 0));
       for(int i = 0; i < n; i++)
@@ -118,12 +118,12 @@ namespace orez.ostring {
 		/// <param name="s">Input string.</param>
 		/// <param name="p">suffix.</param>
 		/// <returns>1 if true, 0 otherwise.</returns>
-		private static string EndsWith(string s, string[] p) {
+		private static string EndsWith(string s, string[] p, bool re) {
 			string t = Str(p, 0);
 			return s.EndsWith(t) ? "1" : "0";
 		}
 
-		private static string Escape(string s, string[] p) {
+		private static string Escape(string s, string[] p, bool re) {
 			string t = Str(p, 0);
 			switch(t.ToLower()) {
 				case "regex":
@@ -141,7 +141,7 @@ namespace orez.ostring {
 		/// <param name="s">Input string.</param>
 		/// <param name="p">start, direction.</param>
 		/// <returns></returns>
-		private static string Find(string s, string[] p) {
+		private static string Find(string s, string[] p, bool re) {
 			string t = Str(p, 0);
 			int i = Indx(Int(p, 1), s), d = Int(p, 1);
 			return (d >= 0 ? s.IndexOf(t, i) : s.LastIndexOf(t, i)).ToString();
@@ -152,7 +152,7 @@ namespace orez.ostring {
 		/// <param name="s">Input string.</param>
 		/// <param name="p">parameters.</param>
 		/// <returns>Formatted string.</returns>
-		private static string Format(string s, string[] p) {
+		private static string Format(string s, string[] p, bool re) {
 			return string.Format(s, p);
 		}
 		/// <summary>
@@ -161,7 +161,7 @@ namespace orez.ostring {
 		/// <param name="s">Input string.</param>
 		/// <param name="p">NA.</param>
 		/// <returns>Lower cased string.</returns>
-		private static string LowerCase(string s, string[] p) {
+		private static string LowerCase(string s, string[] p, bool re) {
 			return s.ToLower();
 		}
 		/// <summary>
@@ -170,7 +170,7 @@ namespace orez.ostring {
 		/// <param name="s">Input string.</param>
 		/// <param name="p">string, index.</param>
 		/// <returns>Put string.</returns>
-		private static string Put(string s, string[] p) {
+		private static string Put(string s, string[] p, bool re) {
 			string t = Str(p, 0);
 			int i = Indx(Int(p, 1), s);
 			int e = Indx(i + t.Length, s);
@@ -182,7 +182,7 @@ namespace orez.ostring {
 		/// <param name="s">Input string.</param>
 		/// <param name="p">start, end.</param>
 		/// <returns>Part of string.</returns>
-		private static string Range(string s, string[] p) {
+		private static string Range(string s, string[] p, bool re) {
 			int i = Indx(Int(p, 0), s);
 			int e = Indx(Int(p, 1, s.Length), s);
 			return s.Substring(i, e - i);
@@ -193,7 +193,7 @@ namespace orez.ostring {
 		/// <param name="s">Input string.</param>
 		/// <param name="p">length, index.</param>
 		/// <returns>Removed string.</returns>
-		private static string Remove(string s, string[] p) {
+		private static string Remove(string s, string[] p, bool re) {
 			int l = Indx(Int(p, 0), s);
 			int i = Indx(Int(p, 1, s.Length - l), s);
 			return s.Remove(i, l);
@@ -204,7 +204,7 @@ namespace orez.ostring {
 		/// <param name="s">Input string</param>
 		/// <param name="p">search, new.</param>
 		/// <returns>Replaced string.</returns>
-		private static string Replace(string s, string[] p) {
+		private static string Replace(string s, string[] p, bool re) {
 			string t = Str(p, 0), u = Str(p, 1);
 			return t == "" ? string.Join(u, t.ToCharArray()) : s.Replace(t, u);
 		}
@@ -214,7 +214,7 @@ namespace orez.ostring {
 		/// <param name="s">Input string.</param>
 		/// <param name="p">NA.</param>
 		/// <returns>Reversed string.</returns>
-		private static string Reverse(string s, string[] p) {
+		private static string Reverse(string s, string[] p, bool re) {
 			char[] c = s.ToCharArray();
 			Array.Reverse(c);
 			return new string(c);
@@ -225,7 +225,7 @@ namespace orez.ostring {
 		/// <param name="s">Input string.</param>
 		/// <param name="p">NA.</param>
 		/// <returns>Size of string.</returns>
-		private static string Size(string s, string[] p) {
+		private static string Size(string s, string[] p, bool re) {
 			return s.Length.ToString();
 		}
 		/// <summary>
@@ -234,7 +234,7 @@ namespace orez.ostring {
 		/// <param name="s">Input string.</param>
 		/// <param name="p">prefix.</param>
 		/// <returns>1 if true, 0 otherwise.</returns>
-		private static string StartsWith(string s, string[] p) {
+		private static string StartsWith(string s, string[] p, bool re) {
 			string t = Str(p, 0);
 			return s.StartsWith(t) ? "1" : "0";
 		}
@@ -245,7 +245,7 @@ namespace orez.ostring {
 		/// <param name="s">Input string.</param>
 		/// <param name="p">NA.</param>
 		/// <returns>Unix lined string.</returns>
-		private static string LfLine(string s, string[] p) {
+		private static string LfLine(string s, string[] p, bool re) {
 			return s.Replace("\r\n", "\n").Replace('\r', '\n');
 		}
 		/// <summary>
@@ -254,7 +254,7 @@ namespace orez.ostring {
 		/// <param name="s">Input string.</param>
 		/// <param name="p">NA.</param>
 		/// <returns>Upper cased string.</returns>
-		private static string UpperCase(string s, string[] p) {
+		private static string UpperCase(string s, string[] p, bool re) {
 			return s.ToUpper();
 		}
 
