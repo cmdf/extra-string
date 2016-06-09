@@ -156,8 +156,8 @@ namespace orez.ostring {
 		/// <param name="p">search, new.</param>
 		/// <returns>Replaced string.</returns>
 		private static string Replace(string s, string[] p) {
-			string t = Str(p, 0, " "), u = Str(p, 1);
-			return s.Replace(t, u);
+			string t = Str(p, 0), u = Str(p, 1);
+			return t == "" ? string.Join(u, t.ToCharArray()) : s.Replace(t, u);
 		}
 		/// <summary>
 		/// Reverse a string.
