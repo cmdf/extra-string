@@ -10,6 +10,10 @@ namespace orez.ostring {
 		public delegate string Fn(string s, string[] p);
 
 		// data
+		private static IDictionary<string, string> DefEsc = new Dictionary<string, string> {
+			{ "\"", "\\\"" }, { "\\", "\\\\" }, { "\a", "\\a" }, {"\b", "\\b" }, {"\f", "\\f" },
+			{"\n", "\\n" }, {"\r", "\\r" }, {"\t", "\\t" }, {"\v", "\\v" }, {"\0", "\\0" }
+		};
 		private static IDictionary<string, Fn> Cmd = new Dictionary<string, Fn> {
 			["add"] = new Fn(Add), ["compare"] = new Fn(Compare), ["endswith"] = new Fn(EndsWith),
 			["find"] = new Fn(Find), ["remove"] = new Fn(Remove), ["replace"] = new Fn(Replace),
@@ -117,6 +121,8 @@ namespace orez.ostring {
 				case "regex":
 				case "r":
 					return Regex.Escape(s);
+				default:
+					break;
 			}
 			return null;
 		}
