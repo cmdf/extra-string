@@ -6,6 +6,10 @@
 		/// </summary>
 		public string fn = "";
 		/// <summary>
+		/// Defines input string to specified function.
+		/// </summary>
+		public string input = "";
+		/// <summary>
 		/// Defines input arguments to specified function.
 		/// </summary>
 		public string[] args = new string[0];
