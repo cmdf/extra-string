@@ -18,13 +18,6 @@ namespace orez.ostring {
 
 		// data
 		/// <summary>
-		/// To be dealt with later.
-		/// </summary>
-		private static IDictionary<string, string> DefEsc = new Dictionary<string, string> {
-			{ "\"", "\\\"" }, { "\\", "\\\\" }, { "\a", "\\a" }, {"\b", "\\b" }, {"\f", "\\f" },
-			{"\n", "\\n" }, {"\r", "\\r" }, {"\t", "\\t" }, {"\v", "\\v" }, {"\0", "\\0" }
-		};
-		/// <summary>
 		/// This is not complete yet.
 		/// </summary>
 		private static IDictionary<string, Fn> Cmd = new Dictionary<string, Fn> {
@@ -32,6 +25,13 @@ namespace orez.ostring {
 			{ "endswith", new Fn(EndsWith)}, {"find",  new Fn(Find)}, {"format", new Fn(Format)}, {"lowercase", new Fn(LowerCase)},
 			{ "put", new Fn(Put)}, {"range", new Fn(Range)}, { "remove", new Fn(Remove)}, { "replace", new Fn(Replace)},
 			{"reverse", new Fn(Reverse)}, {"size", new Fn(Size)}, {"startswith", new Fn(StartsWith)}, {"uppercase", new Fn(UpperCase)}
+		};
+		/// <summary>
+		/// To be dealt with later.
+		/// </summary>
+		private static IDictionary<string, string> DefEsc = new Dictionary<string, string> {
+			{ "\"", "\\\"" }, { "\\", "\\\\" }, { "\a", "\\a" }, {"\b", "\\b" }, {"\f", "\\f" },
+			{"\n", "\\n" }, {"\r", "\\r" }, {"\t", "\\t" }, {"\v", "\\v" }, {"\0", "\\0" }
 		};
 
 
@@ -274,19 +274,6 @@ namespace orez.ostring {
 		private static Regex RegEx(string s) {
 			s = s.StartsWith("/") ? s.Substring(1) : s;
 
-		}
-		private static RegexOptions RegExOpt(string s) {
-			RegexOptions o = RegexOptions.None;
-			for(int i=0; i<s.Length; i++) {
-				switch(s[i]) {
-					case 'i':
-						o |= RegexOptions.IgnoreCase;
-						break;
-					case 'm':
-
-						break;
-				}
-			}
 		}
 		/// <summary>
 		/// Get ranged index for specified string.
