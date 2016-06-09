@@ -2,8 +2,12 @@
 	class oParams {
 		
 		/// <summary>
-		/// Indicates whther specified search pattern is RegEx.
+		/// Indicates whether specified search pattern is RegEx.
 		/// </summary>
 		public bool regex = false;
+		/// <summary>
+		/// Tells the string function to be used.
+		/// </summary>
+		public string fn = "";
 	}
 }
