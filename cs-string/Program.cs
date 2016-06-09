@@ -166,7 +166,8 @@ namespace orez.ostring {
 		private static string Find(string s, string[] p, bool re) {
 			string t = Str(p, 0);
 			int i = Indx(Int(p, 1), s), d = Int(p, 1);
-			return (d >= 0 ? s.IndexOf(t, i) : s.LastIndexOf(t, i)).ToString();
+			if(!re) return (d >= 0 ? s.IndexOf(t, i) : s.LastIndexOf(t, i)).ToString();
+			return null;
 		}
 		/// <summary>
 		/// Uses input string as format to embed parameter strings.
