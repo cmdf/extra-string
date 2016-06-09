@@ -281,6 +281,11 @@ namespace orez.ostring {
 			s = s.StartsWith("/") ? s.Substring(1) : s;
 
 		}
+		/// <summary>
+		/// Get Regex options from options string.
+		/// </summary>
+		/// <param name="s">Options string.</param>
+		/// <returns>Regex options.</returns>
 		private static RegexOptions RegExOpt(string s) {
 			RegexOptions o = RegexOptions.None;
 			for(int i = 0; i < s.Length; i++)
