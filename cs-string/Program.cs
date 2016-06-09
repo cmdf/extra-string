@@ -25,7 +25,7 @@ namespace orez.ostring {
 			Array.Copy(args, 1, p, 0, p.Length);
 			Console.WriteLine(Cmd[args[0].ToLower()](s, p));
 		}
-		
+
 		/// <summary>
 		/// Add a string to input string.
 		/// </summary>
@@ -37,7 +37,6 @@ namespace orez.ostring {
 			int i = Indx(Int(p, 1, s.Length), s);
 			return s.Insert(i, t);
 		}
-
 		/// <summary>
 		/// Get a part of input string.
 		/// </summary>
@@ -49,7 +48,6 @@ namespace orez.ostring {
 			int e = Indx(i + Int(p, 1, 1), s);
 			return s.Substring(i, e - i);
 		}
-
 		/// <summary>
 		/// Compare two strings.
 		/// </summary>
@@ -65,7 +63,6 @@ namespace orez.ostring {
 			string t = Str(p, 0);
 			return s.CompareTo(t).ToString();
 		}
-
 		/// <summary>
 		/// Copies input string specified number of times.
 		/// </summary>
@@ -79,7 +76,6 @@ namespace orez.ostring {
 				t += s;
 			return t;
 		}
-
 		/// <summary>
 		/// Check whether input string ends with suffix.
 		/// </summary>
@@ -90,7 +86,6 @@ namespace orez.ostring {
 			string t = Str(p, 0);
 			return s.EndsWith(t) ? "1" : "0";
 		}
-
 		/// <summary>
 		/// Find index of string in the input string.
 		/// </summary>
@@ -102,7 +97,6 @@ namespace orez.ostring {
 			int i = Indx(Int(p, 1), s), d = Int(p, 1);
 			return (d >= 0 ? s.IndexOf(t, i) : s.LastIndexOf(t, i)).ToString();
 		}
-
 		/// <summary>
 		/// Uses input string as format to embed parameter strings.
 		/// </summary>
@@ -112,7 +106,6 @@ namespace orez.ostring {
 		private static string Format(string s, string[] p) {
 			return string.Format(s, p);
 		}
-
 		/// <summary>
 		/// Put a string onto input string at specified index.
 		/// </summary>
@@ -125,7 +118,6 @@ namespace orez.ostring {
 			int e = Indx(i + t.Length, s);
 			return s.Remove(i, e - i).Insert(i, t);
 		}
-
 		/// <summary>
 		/// Convert input string to lower case.
 		/// </summary>
@@ -135,7 +127,6 @@ namespace orez.ostring {
 		private static string LowerCase(string s, string[] p) {
 			return s.ToLower();
 		}
-
 		/// <summary>
 		/// Get a specified range of input string.
 		/// </summary>
@@ -147,7 +138,6 @@ namespace orez.ostring {
 			int e = Indx(Int(p, 1, s.Length), s);
 			return s.Substring(i, e - i);
 		}
-
 		/// <summary>
 		/// Remove part of input string.
 		/// </summary>
@@ -159,7 +149,6 @@ namespace orez.ostring {
 			int i = Indx(Int(p, 1, s.Length - l), s);
 			return s.Remove(i, l);
 		}
-
 		/// <summary>
 		/// Replace a search string with new string in input string.
 		/// </summary>
@@ -170,7 +159,6 @@ namespace orez.ostring {
 			string t = Str(p, 0, " "), u = Str(p, 1);
 			return s.Replace(t, u);
 		}
-
 		/// <summary>
 		/// Reverse a string.
 		/// </summary>
@@ -182,7 +170,6 @@ namespace orez.ostring {
 			Array.Reverse(c);
 			return new string(c);
 		}
-
 		/// <summary>
 		/// Get the size of a string.
 		/// </summary>
@@ -192,7 +179,6 @@ namespace orez.ostring {
 		private static string Size(string s, string[] p) {
 			return s.Length.ToString();
 		}
-		
 		/// <summary>
 		/// Check whether input string starts with prefix.
 		/// </summary>
@@ -203,7 +189,6 @@ namespace orez.ostring {
 			string t = Str(p, 0);
 			return s.StartsWith(t) ? "1" : "0";
 		}
-
 		// TODO: can we make this one function for all?
 		/// <summary>
 		/// Convert input string to unix line ending.
@@ -214,7 +199,6 @@ namespace orez.ostring {
 		private static string LfLine(string s, string[] p) {
 			return s.Replace("\r\n", "\n").Replace('\r', '\n');
 		}
-
 		/// <summary>
 		/// Convert input string to upper case.
 		/// </summary>
@@ -236,7 +220,6 @@ namespace orez.ostring {
 			while(i < 0) i += s.Length;
 			return i;
 		}
-
 		/// <summary>
 		/// Get string from specified index of string array.
 		/// </summary>
@@ -247,7 +230,6 @@ namespace orez.ostring {
 		private static string Str(string[] a, int i, string v="") {
 			return a.Length > i ? a[i] : v;
 		}
-
 		/// <summary>
 		/// Get int from specified index of string array.
 		/// </summary>
