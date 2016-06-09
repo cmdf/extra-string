@@ -272,8 +272,10 @@ namespace orez.ostring {
 			return v;
 		}
 
-		// split ascii pad trim isalnum (improve replace) join isint isdecimal hextoint
+		// split join -> improve replace
+		// 1 trim, 1 pad, ascii -> generic encodig format?
+		// isint isdecimal -> can be implemented with regex equals
+		// line -> generic line find and replace? hextoint X not string op
 		// multi-line operate, input stream operate
-		
 	}
 }
