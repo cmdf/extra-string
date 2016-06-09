@@ -6,7 +6,7 @@ using System.Text.RegularExpressions;
 namespace orez.ostring {
 	class Program {
 
-		// type
+		// types
 		/// <summary>
 		/// Defines a string function.
 		/// </summary>
@@ -34,6 +34,8 @@ namespace orez.ostring {
 			{"reverse", new Fn(Reverse)}, {"size", new Fn(Size)}, {"startswith", new Fn(StartsWith)}, {"uppercase", new Fn(UpperCase)}
 		};
 
+
+		// methods
 		/// <summary>
 		/// Smack that. Oooo.
 		/// </summary>
