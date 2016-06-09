@@ -17,5 +17,9 @@
 		/// Indicates whether specified search pattern is RegEx.
 		/// </summary>
 		public bool regex = false;
+		/// <summary>
+		/// Indicates the format in which parameter strings are escaped.
+		/// </summary>
+		public string escaped = "";
 	}
 }
