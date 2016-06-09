@@ -126,6 +126,19 @@ namespace orez.ostring {
 		}
 
 		/// <summary>
+		/// Put a string onto input string at specified index.
+		/// </summary>
+		/// <param name="s">Input string.</param>
+		/// <param name="p">string, index.</param>
+		/// <returns>Put string.</returns>
+		private static string Put(string s, string[] p) {
+			string t = Str(p, 0);
+			int i = Indx(Int(p, 1), s);
+			int e = Indx(i + t.Length, s);
+			return s.Remove(i, e - i).Insert(i, t);
+		}
+
+		/// <summary>
 		/// Convert input string to lower case.
 		/// </summary>
 		/// <param name="s">Input string.</param>
