@@ -26,6 +26,19 @@ namespace orez.ostring {
 			Console.WriteLine(Cmd[args[0].ToLower()](s, p));
 		}
 
+		private static oParams GetOpt(string[] args) {
+			oParams p = new oParams();
+			for(int i=0; i<args.Length; i++) {
+				switch(args[i]) {
+					case "--regex":
+					case "-r":
+						p.regex = true;
+						break;
+				}
+			}
+			return p;
+		}
+
 		/// <summary>
 		/// Add a string to input string.
 		/// </summary>
