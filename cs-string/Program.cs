@@ -12,7 +12,7 @@ namespace orez.ostring {
 		/// </summary>
 		/// <param name="s">Input string.</param>
 		/// <param name="p">Input parameters.</param>
-		/// <param name="f">Input flags.</param>
+		/// <param name="re">Indicates search pattern is regex.</param>
 		/// <returns></returns>
 		public delegate string Fn(string s, string[] p, bool re);
 
