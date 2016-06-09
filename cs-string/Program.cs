@@ -244,7 +244,7 @@ namespace orez.ostring {
 
 		// 1 trim, 1 pad, ascii -> generic encodig format?
 		// isint isdecimal -> can be implemented with regex equals
-		// line -> generic line find and replace? hextoint X not string op
+		// line -> generic line find and replace?
 		// multi-line operate, input stream operate
 	}
 }
