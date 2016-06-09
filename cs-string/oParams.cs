@@ -4,6 +4,6 @@
 		/// <summary>
 		/// Indicates whther specified search pattern is RegEx.
 		/// </summary>
-		bool regex = false;
+		public bool regex = false;
 	}
 }
