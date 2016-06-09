@@ -28,11 +28,17 @@ namespace orez.ostring {
 
 		private static oParams GetOpt(string[] args) {
 			oParams p = new oParams();
-			for(int i=0; i<args.Length; i++) {
+			for(int i = 0; i < args.Length; i++) {
 				switch(args[i]) {
 					case "--regex":
 					case "-r":
 						p.regex = true;
+						break;
+					default:
+						p.fn = args[i++];
+						p.args = new string[args.Length - i];
+						Array.Copy(args, i, p.args, 0, p.args.Length);
+						i = args.Length;
 						break;
 				}
 			}
