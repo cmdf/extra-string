@@ -284,10 +284,10 @@ namespace orez.ostring {
 		/// </summary>
 		/// <param name="s">Regex string.</param>
 		/// <returns>Regex object.</returns>
-		private static Regex RegEx(string s) {
+		private static Regex RegEx(string s, RegexOptions op=RegexOptions.None) {
 			s = s.StartsWith("/") ? s.Substring(1) : s;
 			int i = s.LastIndexOf('/');
-			RegexOptions op = RegExOpt(i >= 0 ? s.Substring(i + 1) : "");
+			op |= RegExOpt(i >= 0 ? s.Substring(i + 1) : "");
 			s = i >= 0 ? s.Substring(0, i - 1) : s;
 			return new Regex(s, op);
 		}
