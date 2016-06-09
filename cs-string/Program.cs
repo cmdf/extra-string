@@ -14,7 +14,7 @@ namespace orez.ostring {
 		/// <param name="p">Input parameters.</param>
 		/// <param name="f">Input flags.</param>
 		/// <returns></returns>
-		public delegate string Fn(string s, string[] p, oParams f);
+		public delegate string Fn(string s, string[] p, bool re);
 
 		// data
 		private static IDictionary<string, string> DefEsc = new Dictionary<string, string> {
