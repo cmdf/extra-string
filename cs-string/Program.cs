@@ -33,6 +33,12 @@ namespace orez.ostring {
 			{ "\"", "\\\"" }, { "\\", "\\\\" }, { "\a", "\\a" }, {"\b", "\\b" }, {"\f", "\\f" },
 			{"\n", "\\n" }, {"\r", "\\r" }, {"\t", "\\t" }, {"\v", "\\v" }, {"\0", "\\0" }
 		};
+		/// <summary>
+		/// Regex options associated with characters.
+		/// </summary>
+		private static IDictionary<char, RegexOptions> ReOpt = new Dictionary<char, RegexOptions> {
+			['i'] = RegexOptions.IgnoreCase, ['m'] = RegexOptions.Multiline, ['r'] = RegexOptions.RightToLeft, ['s'] = RegexOptions.Singleline
+		};
 
 
 		// methods
