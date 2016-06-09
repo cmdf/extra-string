@@ -271,6 +271,9 @@ namespace orez.ostring {
 			return s.ToUpper();
 		}
 
+		private static Regex RegEx(string s) {
+			s = s.StartsWith("/")? s.Substring(1) : s;
+		}
 		/// <summary>
 		/// Get ranged index for specified string.
 		/// </summary>
