@@ -281,7 +281,8 @@ namespace orez.ostring {
 			s = s.StartsWith("/") ? s.Substring(1) : s;
 			int i = s.LastIndexOf('/');
 			RegexOptions op = RegExOpt(i >= 0 ? s.Substring(i + 1) : "");
-
+			s = i >= 0 ? s.Substring(0, i - 1) : s;
+			return new Regex(s, op);
 		}
 		/// <summary>
 		/// Get Regex options from options string.
