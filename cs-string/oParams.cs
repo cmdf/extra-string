@@ -9,5 +9,9 @@
 		/// Tells the string function to be used.
 		/// </summary>
 		public string fn = "";
+		/// <summary>
+		/// Defines input arguments to specified function.
+		/// </summary>
+		public string[] args = new string[0];
 	}
 }
