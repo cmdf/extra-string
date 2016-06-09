@@ -17,10 +17,16 @@ namespace orez.ostring {
 		public delegate string Fn(string s, string[] p, bool re);
 
 		// data
+		/// <summary>
+		/// To be dealt with later.
+		/// </summary>
 		private static IDictionary<string, string> DefEsc = new Dictionary<string, string> {
 			{ "\"", "\\\"" }, { "\\", "\\\\" }, { "\a", "\\a" }, {"\b", "\\b" }, {"\f", "\\f" },
 			{"\n", "\\n" }, {"\r", "\\r" }, {"\t", "\\t" }, {"\v", "\\v" }, {"\0", "\\0" }
 		};
+		/// <summary>
+		/// This is not complete yet.
+		/// </summary>
 		private static IDictionary<string, Fn> Cmd = new Dictionary<string, Fn> {
 			{"add",  new Fn(Add)}, {"get", new Fn(Get)}, {"compare", new Fn(Compare)}, {"copy", new Fn(Copy)},
 			{ "endswith", new Fn(EndsWith)}, {"find",  new Fn(Find)}, {"format", new Fn(Format)}, {"lowercase", new Fn(LowerCase)},
