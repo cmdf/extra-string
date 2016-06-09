@@ -281,6 +281,12 @@ namespace orez.ostring {
 			s = s.StartsWith("/") ? s.Substring(1) : s;
 
 		}
+		private static RegexOptions RegExOpt(string s) {
+			RegexOptions o = RegexOptions.None;
+			for(int i = 0; i < s.Length; i++)
+				o |= ReOpt[s[i]];
+			return o;
+		}
 		/// <summary>
 		/// Get ranged index for specified string.
 		/// </summary>
