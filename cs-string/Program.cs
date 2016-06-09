@@ -21,9 +21,8 @@ namespace orez.ostring {
 		/// <param name="args">Input parameters.</param>
 		static void Main(string[] args) {
 			string s = new StreamReader(Console.OpenStandardInput()).ReadToEnd();
-			string[] p = new string[args.Length - 1];
-			Array.Copy(args, 1, p, 0, p.Length);
-			Console.WriteLine(Cmd[args[0].ToLower()](s, p));
+			oParams p = GetOpt(args);
+			Console.WriteLine(Cmd[p.fn](s, p.args));
 		}
 
 		/// <summary>
@@ -40,7 +39,7 @@ namespace orez.ostring {
 						p.regex = true;
 						break;
 					default:
-						p.fn = args[i++];
+						p.fn = args[i++].ToLower();
 						p.args = new string[args.Length - i];
 						Array.Copy(args, i, p.args, 0, p.args.Length);
 						i = args.Length;
