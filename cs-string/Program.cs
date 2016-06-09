@@ -111,8 +111,8 @@ namespace orez.ostring {
 		/// </returns>
 		private static string Compare(string s, string[] p, bool re) {
 			string t = Str(p, 0);
-			if(re) return RegEx(t).Match(s).Length == s.Length ? "0" : "-1";
-			return s.CompareTo(t).ToString();
+			if(!re) return s.CompareTo(t).ToString();
+			return RegEx(t).Match(s).Length == s.Length ? "0" : "-1";
 		}
 		/// <summary>
 		/// Copies input string specified number of times.
@@ -135,7 +135,7 @@ namespace orez.ostring {
 		/// <returns>1 if true, 0 otherwise.</returns>
 		private static string EndsWith(string s, string[] p, bool re) {
 			string t = Str(p, 0);
-			if(re) return RegEx(t).Match(s)
+			if(re) return RegEx(t).Match(s).
 			return s.EndsWith(t) ? "1" : "0";
 		}
 		/// <summary>
