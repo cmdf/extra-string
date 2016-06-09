@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 
 namespace orez.ostring {
 	class Program {
@@ -109,6 +110,17 @@ namespace orez.ostring {
 			string t = Str(p, 0);
 			return s.EndsWith(t) ? "1" : "0";
 		}
+
+		private static string Escape(string s, string[] p) {
+			string t = Str(p, 0);
+			switch(t.ToLower()) {
+				case "regex":
+				case "r":
+					return Regex.Escape(s);
+			}
+			return null;
+		}
+
 		/// <summary>
 		/// Find index of string in the input string.
 		/// </summary>
