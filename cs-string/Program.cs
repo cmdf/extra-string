@@ -26,6 +26,11 @@ namespace orez.ostring {
 			Console.WriteLine(Cmd[args[0].ToLower()](s, p));
 		}
 
+		/// <summary>
+		/// Get input options to ostring.
+		/// </summary>
+		/// <param name="args">Input arguments.</param>
+		/// <returns>Input options.</returns>
 		private static oParams GetOpt(string[] args) {
 			oParams p = new oParams();
 			for(int i = 0; i < args.Length; i++) {
