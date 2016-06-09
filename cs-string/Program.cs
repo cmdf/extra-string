@@ -130,7 +130,13 @@ namespace orez.ostring {
 			string t = Str(p, 0);
 			return s.EndsWith(t) ? "1" : "0";
 		}
-
+		/// <summary>
+		/// Do some escaping!!!!!!!
+		/// </summary>
+		/// <param name="s"></param>
+		/// <param name="p"></param>
+		/// <param name="re"></param>
+		/// <returns></returns>
 		private static string Escape(string s, string[] p, bool re) {
 			string t = Str(p, 0);
 			switch(t.ToLower()) {
@@ -142,7 +148,6 @@ namespace orez.ostring {
 			}
 			return null;
 		}
-
 		/// <summary>
 		/// Find index of string in the input string.
 		/// </summary>
