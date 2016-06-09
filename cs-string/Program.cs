@@ -111,6 +111,7 @@ namespace orez.ostring {
 		/// </returns>
 		private static string Compare(string s, string[] p, bool re) {
 			string t = Str(p, 0);
+			if(re) return RegEx(t).Match(s).Length == s.Length ? "0" : "-1";
 			return s.CompareTo(t).ToString();
 		}
 		/// <summary>
