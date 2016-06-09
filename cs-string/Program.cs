@@ -136,7 +136,8 @@ namespace orez.ostring {
 		private static string EndsWith(string s, string[] p, bool re) {
 			string t = Str(p, 0);
 			if(!re) return s.EndsWith(t) ? "1" : "0";
-			Match m = RegEx(t).Match(s);
+			Match m = RegEx(t, RegexOptions.RightToLeft).Match(s);
+			return m.Index + m.Length >= s.Length ? "1" : "0";
 		}
 		/// <summary>
 		/// Do some escaping!!!!!!!
