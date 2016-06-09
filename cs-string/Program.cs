@@ -277,6 +277,11 @@ namespace orez.ostring {
 			return s.ToUpper();
 		}
 
+		/// <summary>
+		/// Get Regex from regex string.
+		/// </summary>
+		/// <param name="s">Regex string.</param>
+		/// <returns>Regex object.</returns>
 		private static Regex RegEx(string s) {
 			s = s.StartsWith("/") ? s.Substring(1) : s;
 			int i = s.LastIndexOf('/');
