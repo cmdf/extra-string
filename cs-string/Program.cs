@@ -15,9 +15,10 @@ namespace orez.ostring {
 			{"\n", "\\n" }, {"\r", "\\r" }, {"\t", "\\t" }, {"\v", "\\v" }, {"\0", "\\0" }
 		};
 		private static IDictionary<string, Fn> Cmd = new Dictionary<string, Fn> {
-			["add"] = new Fn(Add), ["compare"] = new Fn(Compare), ["endswith"] = new Fn(EndsWith),
-			["find"] = new Fn(Find), ["remove"] = new Fn(Remove), ["replace"] = new Fn(Replace),
-			["reverse"] = new Fn(Reverse), ["size"] = new Fn(Size)
+			{"add",  new Fn(Add)}, {"get", new Fn(Get)}, {"compare", new Fn(Compare)}, {"copy", new Fn(Copy)},
+			{ "endswith", new Fn(EndsWith)}, {"find",  new Fn(Find)}, {"format", new Fn(Format)}, {"lowercase", new Fn(LowerCase)},
+			{ "put", new Fn(Put)}, {"range", new Fn(Range)}, { "remove", new Fn(Remove)}, { "replace", new Fn(Replace)},
+			{"reverse", new Fn(Reverse)}, {"size", new Fn(Size)}, {"startswith", new Fn(StartsWith)}, {"uppercase", new Fn(UpperCase)}
 		};
 
 		/// <summary>
@@ -27,7 +28,7 @@ namespace orez.ostring {
 		static void Main(string[] args) {
 			string s = new StreamReader(Console.OpenStandardInput()).ReadToEnd();
 			oParams p = GetOpt(args);
-			Console.WriteLine(Cmd[p.fn](s, p.args));
+			if(Cmd.ContainsKey(p.fn))	Console.WriteLine(Cmd[p.fn](s, p.args));
 		}
 
 		/// <summary>
@@ -148,6 +149,15 @@ namespace orez.ostring {
 			return string.Format(s, p);
 		}
 		/// <summary>
+		/// Convert input string to lower case.
+		/// </summary>
+		/// <param name="s">Input string.</param>
+		/// <param name="p">NA.</param>
+		/// <returns>Lower cased string.</returns>
+		private static string LowerCase(string s, string[] p) {
+			return s.ToLower();
+		}
+		/// <summary>
 		/// Put a string onto input string at specified index.
 		/// </summary>
 		/// <param name="s">Input string.</param>
@@ -158,15 +168,6 @@ namespace orez.ostring {
 			int i = Indx(Int(p, 1), s);
 			int e = Indx(i + t.Length, s);
 			return s.Remove(i, e - i).Insert(i, t);
-		}
-		/// <summary>
-		/// Convert input string to lower case.
-		/// </summary>
-		/// <param name="s">Input string.</param>
-		/// <param name="p">NA.</param>
-		/// <returns>Lower cased string.</returns>
-		private static string LowerCase(string s, string[] p) {
-			return s.ToLower();
 		}
 		/// <summary>
 		/// Get a specified range of input string.
