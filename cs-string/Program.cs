@@ -25,18 +25,6 @@ namespace orez.ostring {
 			Array.Copy(args, 1, p, 0, p.Length);
 			Console.WriteLine(Cmd[args[0].ToLower()](s, p));
 		}
-
-		private static string Run(string s, string[] p) {
-			if(p.Length > 0) switch(p[0]) {
-					case "at":
-						return null;
-					case "compare":
-						return s.CompareTo(p.Length > 1 ? p[1] : "").ToString();
-					case "size":
-						return s.Length.ToString();
-			}
-			return null;
-		}
 		
 		/// <summary>
 		/// Add a string to input string.
