@@ -8,7 +8,7 @@ namespace orez.ostring {
 
 		// type
 		/// <summary>
-		/// Defines a sub-commmand function.
+		/// Defines a string function.
 		/// </summary>
 		/// <param name="s">Input string.</param>
 		/// <param name="p">Input parameters.</param>
