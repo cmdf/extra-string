@@ -7,7 +7,14 @@ namespace orez.ostring {
 	class Program {
 
 		// type
-		public delegate string Fn(string s, string[] p);
+		/// <summary>
+		/// Defines a sub-commmand function.
+		/// </summary>
+		/// <param name="s">Input string.</param>
+		/// <param name="p">Input parameters.</param>
+		/// <param name="f">Input flags.</param>
+		/// <returns></returns>
+		public delegate string Fn(string s, string[] p, oParams f);
 
 		// data
 		private static IDictionary<string, string> DefEsc = new Dictionary<string, string> {
@@ -28,7 +35,7 @@ namespace orez.ostring {
 		static void Main(string[] args) {
 			string s = new StreamReader(Console.OpenStandardInput()).ReadToEnd();
 			oParams p = GetOpt(args);
-			if(Cmd.ContainsKey(p.fn))	Console.WriteLine(Cmd[p.fn](s, p.args));
+			if(Cmd.ContainsKey(p.fn))	Console.WriteLine(Cmd[p.fn](s, p.args, p));
 		}
 
 		/// <summary>
