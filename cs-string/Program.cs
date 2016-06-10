@@ -28,13 +28,6 @@ namespace orez.ostring {
 			{ "put", new Fn(Put)}, {"range", new Fn(Range)}, { "remove", new Fn(Remove)}, { "replace", new Fn(Replace)},
 			{"reverse", new Fn(Reverse)}, {"size", new Fn(Size)}, {"startswith", new Fn(StartsWith)}, {"uppercase", new Fn(UpperCase)}
 		};
-		/*
-		Escape characters in batch:
-			^\  ^&  ^|  ^>  ^<  ^^
-			^+CRLF = nothing
-			%%
-			^^! if enable delayed expansion
-		*/
 		/// <summary>
 		/// String Encode table for DOS without delayed expansion enabled.
 		/// </summary>
