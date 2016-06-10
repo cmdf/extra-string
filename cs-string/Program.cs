@@ -1,9 +1,9 @@
 ﻿using System;
 using System.IO;
-using System.Web;
 using System.Text;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
+using orez.ostring.data;
 
 namespace orez.ostring {
 	class Program {
@@ -30,33 +30,13 @@ namespace orez.ostring {
 			["add"] = new Fn(Add), ["put"] = new Fn(Put),	["replace"] = new Fn(Replace), ["remove"] = new Fn(Remove), ["reverse"] = new Fn(Reverse)
 		};
 		/// <summary>
-		/// String Encode table for DOS without delayed expansion enabled.
+		/// Associates encoding name with encoding type enum.
 		/// </summary>
-		private static IDictionary<string, string> EncDos = new Dictionary<string, string> {
-			["\\"] = "^\\", ["&"] = "^&", ["|"] = "^|", [">"] = "^>", ["<"] = "^<", ["^"] = "^^", ["%"] = "%%", [""] = "^\r\n"
+		private static IDictionary<string, EncType> EncTyp = new Dictionary<string, EncType> {
+			["html"] = EncType.Html, ["h"] = EncType.Html, ["url"] = EncType.Url, ["u"] = EncType.Url,
+			["dos"] = EncType.Dos, ["d"] = EncType.Dos, ["dose"] = EncType.Dose, ["e"] = EncType.Dose,
+			["regex"] = EncType.Regex, ["r"] = EncType.Regex, ["code"] = EncType.Code, ["c"] = EncType.Code
 		};
-		/// <summary>
-		/// String Encode table for DOS with delayed expansion enabled.
-		/// </summary>
-		private static IDictionary<string, string> EncDose = new Dictionary<string, string> {
-			["\\"] = "^\\", ["&"] = "^&", ["|"] = "^|", [">"] = "^>", ["<"] = "^<", ["^"] = "^^", ["%"] = "%%", [""] = "^\r\n",
-			["!"] = "^^!"
-		};
-		/// <summary>
-		/// String Encode table for standard coding language.
-		/// </summary>
-		private static IDictionary<string, string> EncCode = new Dictionary<string, string> {
-			["\""] = "\\\"", ["\\"] = "\\\\", ["\a"] = "\\a", ["\b"] = "\\b", ["\f"] = "\\f", ["\n"] = "\\n", ["\r"] = "\\r",
-			["\t"] = "\\t", ["\v"] = "\\v", ["\0"] = "\\0"
-		};
-		/// <summary>
-		/// Regex options associated with characters.
-		/// </summary>
-		private static IDictionary<char, RegexOptions> ReOpt = new Dictionary<char, RegexOptions> {
-			['i'] = RegexOptions.IgnoreCase, ['m'] = RegexOptions.Multiline, ['r'] = RegexOptions.RightToLeft,
-			['s'] = RegexOptions.Singleline
-		};
-
 
 		// methods
 		/// <summary>
@@ -94,7 +74,7 @@ namespace orez.ostring {
 						p.fn = args[i++].ToLower();
 						p.args = new string[args.Length - i];
 						for(int d=0; i<args.Length; d++, i++)
-							p.args[d] = Decode(args[i], p.encoded);
+							p.args[d] = args[i].Decode(EncTyp.GetDef(p.encoded));
 						break;
 				}
 			}
@@ -143,7 +123,7 @@ namespace orez.ostring {
 			int i = Indx(Int(p, 1), s), d = Int(p, 1, 1);
 			if (!re) for (int n = 0, N = Math.Abs(d); n < N; n++, i = d >= 0 ? i + 1 : i - 1)
 					Console.WriteLine(i = (d >= 0 ? s.IndexOf(t, i) : s.LastIndexOf(t, i)));
-			foreach (Match m in RegEx(t, d < 0 ? RegexOptions.RightToLeft : RegexOptions.None).Matches(s, i))
+			foreach (Match m in t.RegEx(d < 0 ? RegexOptions.RightToLeft : RegexOptions.None).Matches(s, i))
 				Console.WriteLine(m.Index + " " + m.Length);
 		}
 		/// <summary>
@@ -159,7 +139,7 @@ namespace orez.ostring {
 		private static void Compare(string s, string[] p, bool re) {
 			string t = Str(p, 0);
 			if (!re) { Console.WriteLine(s.CompareTo(t)); return; }
-			Console.WriteLine(RegEx(t).Match(s).Length == s.Length ? "0" : "-1");
+			Console.WriteLine(t.RegEx().Match(s).Length == s.Length ? "0" : "-1");
 		}
 		/// <summary>
 		/// Check whether input string starts with prefix.
@@ -171,7 +151,7 @@ namespace orez.ostring {
 		private static void StartsWith(string s, string[] p, bool re) {
 			string t = Str(p, 0);
 			if (!re) Console.WriteLine(s.StartsWith(t) ? "1" : "0");
-			Match m = RegEx(t).Match(s);
+			Match m = t.RegEx().Match(s);
 			Console.WriteLine(m.Length == t.Length ? "1" : "0");
 		}
 		/// <summary>
@@ -184,7 +164,7 @@ namespace orez.ostring {
 		private static void EndsWith(string s, string[] p, bool re) {
 			string t = Str(p, 0);
 			if (!re) Console.WriteLine(s.EndsWith(t) ? "1" : "0");
-			Match m = RegEx(t, RegexOptions.RightToLeft).Match(s);
+			Match m = t.RegEx(RegexOptions.RightToLeft).Match(s);
 			Console.WriteLine(m.Length == t.Length ? "1" : "0");
 		}
 		/// <summary>
@@ -204,8 +184,8 @@ namespace orez.ostring {
 		/// <param name="p">type.</param>
 		/// <param name="re">NA.</param>
 		private static void Encode(string s, string[] p, bool re) {
-			string t = Str(p, 0);
-			Print(Encode(s, t));
+			EncType t = EncTyp.GetDef(Str(p, 0));
+			Print(s.Encode(t));
 		}
 		/// <summary>
 		/// Decode or Unescape string to original form.
@@ -214,8 +194,8 @@ namespace orez.ostring {
 		/// <param name="p">type.</param>
 		/// <param name="re">NA.</param>
 		private static void Decode(string s, string[] p, bool re) {
-			string t = Str(p, 0);
-			Print(Decode(s, t));
+			EncType t = EncTyp.GetDef(Str(p, 0));
+			Print(s.Decode(t));
 		}
 		/// <summary>
 		/// Replace line endings in input string.
@@ -236,7 +216,7 @@ namespace orez.ostring {
 		private static void Copy(string s, string[] p, bool re) {
 			StringBuilder t = new StringBuilder();
 			int n = Math.Abs(Int(p, 0));
-			Print(Repeat(s, n));
+			Print(s.Repeat(n));
 		}
 		/// <summary>
 		/// Uses input string as format to embed parameter strings.
@@ -256,7 +236,7 @@ namespace orez.ostring {
 		private static void Pad(string s, string[] p, bool re) {
 			int n = Int(p, 0, 1), d = Int(p, 1);
 			string t = Str(p, 2, " ");
-			string r = Repeat(t, n);
+			string r = t.Repeat(n);
 			Print((d <= 0 ? r : "") + s + (d >= 0 ? r : ""));
 		}
 		/// <summary>
@@ -306,7 +286,7 @@ namespace orez.ostring {
 			string t = Str(p, 0), u = Str(p, 1);
 			if (t == "") Print(string.Join(u, t.ToCharArray()));
 			else if (!re) Print(s.Replace(t, u));
-			else Print(RegEx(t).Replace(s, u));
+			else Print(t.RegEx().Replace(s, u));
 		}
 		/// <summary>
 		/// Remove part of input string.
@@ -361,111 +341,6 @@ namespace orez.ostring {
 		}
 
 		/// <summary>
-		/// Encode or Escape string to coded form.
-		/// </summary>
-		/// <param name="s">Input string.</param>
-		/// <param name="typ">Encoding type.</param>
-		/// <returns></returns>
-		private static string Encode(string s, string typ) {
-			switch (typ) {
-				case "html":
-				case "h":
-					return HttpUtility.HtmlEncode(s);
-				case "url":
-				case "u":
-					return HttpUtility.UrlEncode(s);
-				case "regex":
-				case "r":
-					return Regex.Escape(s);
-				case "dos":
-				case "d":
-					return RepDict(s, EncDos, true);
-				case "dose":
-				case "e":
-					return RepDict(s, EncDose, true);
-				case "code":
-				case "c":
-					return RepDict(s, EncCode, true);
-			}
-			return s;
-		}
-		/// <summary>
-		/// Decode or Unescape string to original form.
-		/// </summary>
-		/// <param name="s">Input string.</param>
-		/// <param name="typ">Decoding type.</param>
-		/// <returns>Decoded string.</returns>
-		private static string Decode(string s, string typ) {
-			switch(typ) {
-				case "html":
-				case "h":
-					return HttpUtility.HtmlDecode(s);
-				case "url":
-				case "u":
-					return HttpUtility.UrlDecode(s);
-				case "regex":
-				case "r":
-					return Regex.Unescape(s);
-				case "dos":
-				case "d":
-					return RepDict(s, EncDos, false);
-				case "dose":
-				case "e":
-					return RepDict(s, EncDose, false);
-				case "code":
-				case "c":
-					return RepDict(s, EncCode, false);
-			}
-			return s;
-		}
-		/// <summary>
-		/// Replace string with associated values from dictionary.
-		/// </summary>
-		/// <param name="s">Input string.</param>
-		/// <param name="d">Dictionary used to replace.</param>
-		/// <param name="ksrch">Indicates whether to use key as search string, if false use value.</param>
-		/// <returns></returns>
-		private static string RepDict(string s, IDictionary<string, string> d, bool ksrch) {
-			if (ksrch) foreach (var p in d) { if (p.Key != "") s = s.Replace(p.Key, p.Value); }
-			else foreach (var p in d) { if (p.Value != "") s = s.Replace(p.Value, p.Key); }
-			return s;
-		}
-		/// <summary>
-		/// Get Regex from regex string.
-		/// </summary>
-		/// <param name="s">Regex string.</param>
-		/// <returns>Regex object.</returns>
-		private static Regex RegEx(string s, RegexOptions op=RegexOptions.None) {
-			s = s.StartsWith("/") ? s.Substring(1) : s;
-			int i = s.LastIndexOf('/');
-			op |= RegExOpt(i >= 0 ? s.Substring(i + 1) : "");
-			s = i >= 0 ? s.Substring(0, i) : s;
-			return new Regex(s, op);
-		}
-		/// <summary>
-		/// Get Regex options from options string.
-		/// </summary>
-		/// <param name="s">Options string.</param>
-		/// <returns>Regex options.</returns>
-		private static RegexOptions RegExOpt(string s) {
-			RegexOptions o = RegexOptions.None;
-			for(int i = 0; i < s.Length; i++)
-				if(ReOpt.ContainsKey(s[i])) o |= ReOpt[s[i]];
-			return o;
-		}
-		/// <summary>
-		/// Repeat a string certain number of times.
-		/// </summary>
-		/// <param name="s">Input string.</param>
-		/// <param name="n">Times.</param>
-		/// <returns>Repeated string.</returns>
-		private static string Repeat(string s, int n) {
-			StringBuilder o = new StringBuilder();
-			for (int i = 0; i < n; i++)
-				o.Append(s);
-			return o.ToString();
-		}
-		/// <summary>
 		/// Get ranged index for specified string.
 		/// </summary>
 		/// <param name="s">String value.</param>
@@ -510,7 +385,7 @@ namespace orez.ostring {
 			if (n >= p.Length) return s;
 			string[] c = p[n + 1].Split('^');
 			string r = p[n], c0 = c[0], c1 = c.Length > 1 ? c[1] : "";
-			Match m = RegEx(r).Match(s);
+			Match m = r.RegEx().Match(s);
 			for(; m.Success; m = m.NextMatch()) {
 			}
 			return null;

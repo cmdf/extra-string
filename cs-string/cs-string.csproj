@@ -44,6 +44,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="data\EncType.cs" />
+    <Compile Include="data\oIDictionaryExt.cs" />
     <Compile Include="data\oStringExt.cs" />
     <Compile Include="oParams.cs" />
     <Compile Include="Program.cs" />
