@@ -88,11 +88,11 @@ namespace orez.ostring {
 						break;
 					case "--input":
 					case "-i":
-						p.input = new StreamReader(Console.OpenStandardInput()).ReadToEnd();
+						p.input = args[++i];
 						break;
 					default:
+						if (p.input == null) p.input = new StreamReader(Console.OpenStandardInput()).ReadToEnd();
 						p.fn = args[i++].ToLower();
-						if(p.input == null) p.input = args[i++];
 						p.args = new string[args.Length - i];
 						for(int d=0; i<args.Length; d++, i++)
 							p.args[d] = Decode(args[i], p.encoded);
