@@ -298,6 +298,14 @@ namespace orez.ostring {
 			Console.WriteLine(s.ToUpper());
 		}
 
+
+		private static string Escape(string s, string typ) {
+			return null;
+		}
+		private static string UnEscape(string s, string typ) {
+			return null;
+		}
+
 		/// <summary>
 		/// Get Regex from regex string.
 		/// </summary>
