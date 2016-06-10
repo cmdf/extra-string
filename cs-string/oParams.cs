@@ -18,8 +18,8 @@
 		/// </summary>
 		public bool regex = false;
 		/// <summary>
-		/// Indicates the format in which parameter strings are escaped.
+		/// Indicates the format in which parameter strings are encoded.
 		/// </summary>
-		public string escaped = "";
+		public string encoded = "";
 	}
 }

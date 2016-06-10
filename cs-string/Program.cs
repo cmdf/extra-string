@@ -81,9 +81,9 @@ namespace orez.ostring {
 					case "-r":
 						p.regex = true;
 						break;
-					case "--escaped":
+					case "--encoded":
 					case "-e":
-						p.escaped = args[++i];
+						p.encoded = args[++i];
 						break;
 					case "--input":
 					case "-i":
@@ -93,8 +93,8 @@ namespace orez.ostring {
 						p.fn = args[i++].ToLower();
 						if(p.input == null) p.input = args[i++];
 						p.args = new string[args.Length - i];
-						Array.Copy(args, i, p.args, 0, p.args.Length);
-						i = args.Length;
+						for(int d=0; i<args.Length; d++, i++)
+							p.args[d] = Decode(args[i], p.encoded);
 						break;
 				}
 			}
@@ -311,6 +311,7 @@ namespace orez.ostring {
 		private static void UpperCase(string s, string[] p, bool re) {
 			Console.WriteLine(s.ToUpper());
 		}
+
 		/// <summary>
 		/// Encode or Escape string to coded form.
 		/// </summary>
@@ -334,8 +335,11 @@ namespace orez.ostring {
 				case "dose":
 				case "e":
 					return RepDict(s, EncDose, true);
+				case "code":
+				case "c":
+					return RepDict(s, EncCode, true);
 			}
-			return RepDict(s, EncCode, true);
+			return s;
 		}
 		/// <summary>
 		/// Decode or Unescape string to original form.
@@ -360,8 +364,11 @@ namespace orez.ostring {
 				case "dose":
 				case "e":
 					return RepDict(s, EncDose, false);
+				case "code":
+				case "c":
+					return RepDict(s, EncCode, false);
 			}
-			return RepDict(s, EncCode, false);
+			return s;
 		}
 		/// <summary>
 		/// Replace string with associated values from dictionary.
