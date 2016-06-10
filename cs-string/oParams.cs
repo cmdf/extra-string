@@ -8,7 +8,7 @@
 		/// <summary>
 		/// Defines input string to specified function.
 		/// </summary>
-		public string input = "";
+		public string input = null;
 		/// <summary>
 		/// Defines input arguments to specified function.
 		/// </summary>
