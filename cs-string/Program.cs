@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Web;
 using System.Text;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
@@ -299,10 +300,17 @@ namespace orez.ostring {
 		}
 
 
-		private static string Escape(string s, string typ) {
+		private static string Encode(string s, string typ) {
 			return null;
 		}
-		private static string UnEscape(string s, string typ) {
+
+		private static string Decode(string s, string typ) {
+			switch(typ) {
+				case "url":
+				case "u":
+					return HttpUtility.UrlDecode(s);
+
+			}
 			return null;
 		}
 
