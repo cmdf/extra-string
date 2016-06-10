@@ -350,6 +350,18 @@ namespace orez.ostring {
 		}
 
 		/// <summary>
+		/// Replace string with associated values from dictionary.
+		/// </summary>
+		/// <param name="s">Input string.</param>
+		/// <param name="d">Dictionary used to replace.</param>
+		/// <param name="ksrch">Indicates whether to use key as search string, if false use value.</param>
+		/// <returns></returns>
+		private static string RepDict(string s, IDictionary<string, string> d, bool ksrch) {
+			if (ksrch) foreach (var p in d) { if (p.Key != "") s = s.Replace(p.Key, p.Value); }
+			else foreach (var p in d) { if (p.Value != "") s = s.Replace(p.Value, p.Key); }
+			return s;
+		}
+		/// <summary>
 		/// Get Regex from regex string.
 		/// </summary>
 		/// <param name="s">Regex string.</param>
