@@ -311,14 +311,12 @@ namespace orez.ostring {
 		private static void UpperCase(string s, string[] p, bool re) {
 			Console.WriteLine(s.ToUpper());
 		}
-
-		/*
-		Escape characters in batch:
-			^\  ^&  ^|  ^>  ^<  ^^
-			^+CRLF = nothing
-			%%
-			^^! if enable delayed expansion
-		*/
+		/// <summary>
+		/// Encode or Escape string to coded form.
+		/// </summary>
+		/// <param name="s">Input string.</param>
+		/// <param name="typ">Encoding type.</param>
+		/// <returns></returns>
 		private static string Encode(string s, string typ) {
 			switch (typ) {
 				case "html":
@@ -330,10 +328,21 @@ namespace orez.ostring {
 				case "regex":
 				case "r":
 					return Regex.Escape(s);
+				case "dos":
+				case "d":
+					return RepDict(s, EncDos, true);
+				case "dose":
+				case "e":
+					return RepDict(s, EncDose, true);
 			}
-			return null;
+			return RepDict(s, EncCode, true);
 		}
-
+		/// <summary>
+		/// Decode or Unescape string to original form.
+		/// </summary>
+		/// <param name="s">Input string.</param>
+		/// <param name="typ">Decoding type.</param>
+		/// <returns>Decoded string.</returns>
 		private static string Decode(string s, string typ) {
 			switch(typ) {
 				case "html":
@@ -345,10 +354,15 @@ namespace orez.ostring {
 				case "regex":
 				case "r":
 					return Regex.Unescape(s);
+				case "dos":
+				case "d":
+					return RepDict(s, EncDos, false);
+				case "dose":
+				case "e":
+					return RepDict(s, EncDose, false);
 			}
-			return null;
+			return RepDict(s, EncCode, false);
 		}
-
 		/// <summary>
 		/// Replace string with associated values from dictionary.
 		/// </summary>
