@@ -148,7 +148,7 @@ namespace orez.ostring {
 			string t = Str(p, 0);
 			if(!re) Console.WriteLine(s.EndsWith(t) ? "1" : "0");
 			Match m = RegEx(t, RegexOptions.RightToLeft).Match(s);
-			Console.WriteLine(m.Index + m.Length >= s.Length ? "1" : "0");
+			Console.WriteLine(m.Length == t.Length ? "1" : "0");
 		}
 		/// <summary>
 		/// Do some escaping!!!!!!!
@@ -176,8 +176,11 @@ namespace orez.ostring {
 		/// <returns></returns>
 		private static void Find(string s, string[] p, bool re) {
 			string t = Str(p, 0);
-			int i = Indx(Int(p, 1), s), d = Int(p, 1);
-			if(!re) Console.WriteLine((d >= 0 ? s.IndexOf(t, i) : s.LastIndexOf(t, i)));
+			int i = Indx(Int(p, 1), s), d = Int(p, 1, 1);
+			if(!re) for(int n = 0, N = Math.Abs(d); n < N; n++, i = d >= 0 ? i + 1 : i - 1)
+					Console.WriteLine(i = (d >= 0 ? s.IndexOf(t, i) : s.LastIndexOf(t, i)));
+			foreach(Match m in RegEx(t, d < 0 ? RegexOptions.RightToLeft : RegexOptions.None).Matches(s, i))
+				Console.WriteLine(m.Index+" "+m.Length);
 		}
 		/// <summary>
 		/// Uses input string as format to embed parameter strings.
@@ -269,7 +272,9 @@ namespace orez.ostring {
 		/// <returns>1 if true, 0 otherwise.</returns>
 		private static void StartsWith(string s, string[] p, bool re) {
 			string t = Str(p, 0);
-			Console.WriteLine(s.StartsWith(t) ? "1" : "0");
+			if(!re) Console.WriteLine(s.StartsWith(t) ? "1" : "0");
+			Match m = RegEx(t).Match(s);
+			Console.WriteLine(m.Length == t.Length ? "1" : "0");
 		}
 		// TODO: can we make this one function for all?
 		/// <summary>
