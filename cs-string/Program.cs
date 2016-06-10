@@ -203,11 +203,11 @@ namespace orez.ostring {
 		/// <param name="s">Input string.</param>
 		/// <param name="p">string, index.</param>
 		/// <returns>Put string.</returns>
-		private static string Put(string s, string[] p, bool re) {
+		private static void Put(string s, string[] p, bool re) {
 			string t = Str(p, 0);
 			int i = Indx(Int(p, 1), s);
 			int e = Indx(i + t.Length, s);
-			return s.Remove(i, e - i).Insert(i, t);
+			Console.WriteLine(s.Remove(i, e - i).Insert(i, t));
 		}
 		/// <summary>
 		/// Get a specified range of input string.
