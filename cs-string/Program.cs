@@ -301,6 +301,17 @@ namespace orez.ostring {
 
 
 		private static string Encode(string s, string typ) {
+			switch (typ) {
+				case "html":
+				case "h":
+					return HttpUtility.HtmlEncode(s);
+				case "url":
+				case "u":
+					return HttpUtility.UrlEncode(s);
+				case "regex":
+				case "r":
+					return Regex.Escape(s);
+			}
 			return null;
 		}
 
