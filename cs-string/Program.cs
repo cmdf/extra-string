@@ -7,6 +7,10 @@ using orez.ostring.data;
 using orez.ostring.text;
 
 namespace orez.ostring {
+
+	/// <summary>
+	/// Please take me to the party...
+	/// </summary>
 	class Program {
 
 		// types
@@ -33,10 +37,10 @@ namespace orez.ostring {
 		/// <summary>
 		/// Associates encoding name with encoding type enum.
 		/// </summary>
-		private static IDictionary<string, EncType> EncTyp = new Dictionary<string, EncType> {
-			["html"] = EncType.Html, ["h"] = EncType.Html, ["url"] = EncType.Url, ["u"] = EncType.Url,
-			["dos"] = EncType.Dos, ["d"] = EncType.Dos, ["dose"] = EncType.Dose, ["e"] = EncType.Dose,
-			["regex"] = EncType.Regex, ["r"] = EncType.Regex, ["code"] = EncType.Code, ["c"] = EncType.Code
+		private static IDictionary<string, oEncType> EncTyp = new Dictionary<string, oEncType> {
+			["html"] = oEncType.Html, ["h"] = oEncType.Html, ["url"] = oEncType.Url, ["u"] = oEncType.Url,
+			["dos"] = oEncType.Dos, ["d"] = oEncType.Dos, ["dose"] = oEncType.Dose, ["e"] = oEncType.Dose,
+			["regex"] = oEncType.Regex, ["r"] = oEncType.Regex, ["code"] = oEncType.Code, ["c"] = oEncType.Code
 		};
 
 		// methods
@@ -185,7 +189,7 @@ namespace orez.ostring {
 		/// <param name="p">type.</param>
 		/// <param name="re">NA.</param>
 		private static void Encode(string s, string[] p, bool re) {
-			EncType t = EncTyp.GetDef(Str(p, 0));
+			oEncType t = EncTyp.GetDef(Str(p, 0));
 			Print(s.Encode(t));
 		}
 		/// <summary>
@@ -195,7 +199,7 @@ namespace orez.ostring {
 		/// <param name="p">type.</param>
 		/// <param name="re">NA.</param>
 		private static void Decode(string s, string[] p, bool re) {
-			EncType t = EncTyp.GetDef(Str(p, 0));
+			oEncType t = EncTyp.GetDef(Str(p, 0));
 			Print(s.Decode(t));
 		}
 		/// <summary>
@@ -307,9 +311,7 @@ namespace orez.ostring {
 		/// <param name="p">NA.</param>
 		/// <param name="re">NA.</param>
 		private static void Reverse(string s, string[] p, bool re) {
-			char[] c = s.ToCharArray();
-			Array.Reverse(c);
-			Print(new string(c));
+			Print(s.Reverse());
 		}
 
 		/// <summary>
@@ -371,25 +373,5 @@ namespace orez.ostring {
 			if (Console.IsOutputRedirected) Console.Write(o);
 			else Console.WriteLine(o);
 		}
-
-		private static string Casie(string s, string[] p, int n) {
-			if (n >= p.Length) return s;
-			string[] c = p[n + 1].Split('^');
-			string r = p[n], c0 = c[0], c1 = c.Length > 1 ? c[1] : "";
-			Match m = r.RegEx().Match(s);
-			for(; m.Success; m = m.NextMatch()) {
-			}
-			return null;
-		}
-
-		// regex pattern for recursively matching words and applying below rules:
-		// . = keep
-		// 1 = upcase
-		// 0 = lowcase
-		// * = repeaters
-		// () = encapsulators
-		// ^ = apply rule for non-matched
-		// case definition for chaning
-		// multi-line operate, input stream operate
 	}
 }

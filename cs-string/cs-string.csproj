@@ -44,9 +44,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="data\EncType.cs" />
+    <Compile Include="text\Casie.cs" />
+    <Compile Include="text\EncType.cs" />
     <Compile Include="data\oIDictionaryExt.cs" />
-    <Compile Include="data\oStringExt.cs" />
+    <Compile Include="text\oStringExt.cs" />
     <Compile Include="oParams.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -54,6 +55,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

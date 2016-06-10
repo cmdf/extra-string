@@ -1,9 +1,14 @@
-﻿using System.Text;
+﻿using System;
+using System.Text;
 using System.Text.RegularExpressions;
 using System.Collections.Generic;
 using System.Web;
 
 namespace orez.ostring.text {
+
+	/// <summary>
+	/// Defines string extension methods.
+	/// </summary>
 	static class oStringExt {
 
 		// data
@@ -43,42 +48,43 @@ namespace orez.ostring.text {
 		/// <param name="s">Input string.</param>
 		/// <param name="typ">Encoding type.</param>
 		/// <returns></returns>
-		public static string Encode(this string s, EncType typ) {
+		public static string Encode(this string s, oEncType typ) {
 			switch (typ) {
-				case EncType.Html:
+				case oEncType.Html:
 					return HttpUtility.HtmlEncode(s);
-				case EncType.Url:
+				case oEncType.Url:
 					return HttpUtility.UrlEncode(s);
-				case EncType.Dos:
+				case oEncType.Dos:
 					return s.Replace(EncDos, true);
-				case EncType.Dose:
+				case oEncType.Dose:
 					return s.Replace(EncDose, true);
-				case EncType.Regex:
+				case oEncType.Regex:
 					return Regex.Escape(s);
-				case EncType.Code:
+				case oEncType.Code:
 					return s.Replace(EncCode, true);
 			}
 			return s;
 		}
+
 		/// <summary>
 		/// Decode or Unescape string to original form.
 		/// </summary>
 		/// <param name="s">Input string.</param>
 		/// <param name="typ">Decoding type.</param>
 		/// <returns>Decoded string.</returns>
-		public static string Decode(this string s, EncType typ) {
+		public static string Decode(this string s, oEncType typ) {
 			switch (typ) {
-				case EncType.Html:
+				case oEncType.Html:
 					return HttpUtility.HtmlDecode(s);
-				case EncType.Url:
+				case oEncType.Url:
 					return HttpUtility.UrlDecode(s);
-				case EncType.Dos:
+				case oEncType.Dos:
 					return s.Replace(EncDos, false);
-				case EncType.Dose:
+				case oEncType.Dose:
 					return s.Replace(EncDose, false);
-				case EncType.Regex:
+				case oEncType.Regex:
 					return Regex.Unescape(s);
-				case EncType.Code:
+				case oEncType.Code:
 					return s.Replace(EncCode, false);
 			}
 			return s;
@@ -133,6 +139,17 @@ namespace orez.ostring.text {
 			for (int i = 0; i < n; i++)
 				o.Append(s);
 			return o.ToString();
+		}
+
+		/// <summary>
+		/// Reverse a string.
+		/// </summary>
+		/// <param name="s">Input string.</param>
+		/// <returns>Reversed string.</returns>
+		public static string Reverse(this string s) {
+			char[] c = s.ToCharArray();
+			Array.Reverse(c);
+			return new string(c);
 		}
 	}
 }

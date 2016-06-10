@@ -1,4 +1,8 @@
 ﻿namespace orez.ostring {
+
+	/// <summary>
+	/// Defines input parameters to ostring.
+	/// </summary>
 	class oParams {
 		
 		/// <summary>
