@@ -66,8 +66,17 @@ namespace orez.ostring {
 					case "-r":
 						p.regex = true;
 						break;
+					case "--escaped":
+					case "-e":
+						p.escaped = args[++i];
+						break;
+					case "--input":
+					case "-i":
+						p.input = new StreamReader(Console.OpenStandardInput()).ReadToEnd();
+						break;
 					default:
 						p.fn = args[i++].ToLower();
+						if(p.input == null) p.input = args[i++];
 						p.args = new string[args.Length - i];
 						Array.Copy(args, i, p.args, 0, p.args.Length);
 						i = args.Length;
