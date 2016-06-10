@@ -185,8 +185,8 @@ namespace orez.ostring {
 		/// <param name="s">Input string.</param>
 		/// <param name="p">parameters.</param>
 		/// <returns>Formatted string.</returns>
-		private static string Format(string s, string[] p, bool re) {
-			return string.Format(s, p);
+		private static void Format(string s, string[] p, bool re) {
+			Console.WriteLine(string.Format(s, p));
 		}
 		/// <summary>
 		/// Convert input string to lower case.
