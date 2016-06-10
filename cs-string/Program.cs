@@ -237,9 +237,9 @@ namespace orez.ostring {
 		/// <param name="s">Input string</param>
 		/// <param name="p">search, new.</param>
 		/// <returns>Replaced string.</returns>
-		private static string Replace(string s, string[] p, bool re) {
+		private static void Replace(string s, string[] p, bool re) {
 			string t = Str(p, 0), u = Str(p, 1);
-			return t == "" ? string.Join(u, t.ToCharArray()) : s.Replace(t, u);
+			Console.WriteLine(t == "" ? string.Join(u, t.ToCharArray()) : s.Replace(t, u));
 		}
 		/// <summary>
 		/// Reverse a string.
@@ -247,10 +247,10 @@ namespace orez.ostring {
 		/// <param name="s">Input string.</param>
 		/// <param name="p">NA.</param>
 		/// <returns>Reversed string.</returns>
-		private static string Reverse(string s, string[] p, bool re) {
+		private static void Reverse(string s, string[] p, bool re) {
 			char[] c = s.ToCharArray();
 			Array.Reverse(c);
-			return new string(c);
+			Console.WriteLine(new string(c));
 		}
 		/// <summary>
 		/// Get the size of a string.
@@ -258,8 +258,8 @@ namespace orez.ostring {
 		/// <param name="s">Input string.</param>
 		/// <param name="p">NA.</param>
 		/// <returns>Size of string.</returns>
-		private static string Size(string s, string[] p, bool re) {
-			return s.Length.ToString();
+		private static void Size(string s, string[] p, bool re) {
+			Console.WriteLine(s.Length);
 		}
 		/// <summary>
 		/// Check whether input string starts with prefix.
@@ -267,9 +267,9 @@ namespace orez.ostring {
 		/// <param name="s">Input string.</param>
 		/// <param name="p">prefix.</param>
 		/// <returns>1 if true, 0 otherwise.</returns>
-		private static string StartsWith(string s, string[] p, bool re) {
+		private static void StartsWith(string s, string[] p, bool re) {
 			string t = Str(p, 0);
-			return s.StartsWith(t) ? "1" : "0";
+			Console.WriteLine(s.StartsWith(t) ? "1" : "0");
 		}
 		// TODO: can we make this one function for all?
 		/// <summary>
@@ -278,8 +278,8 @@ namespace orez.ostring {
 		/// <param name="s">Input string.</param>
 		/// <param name="p">NA.</param>
 		/// <returns>Unix lined string.</returns>
-		private static string LfLine(string s, string[] p, bool re) {
-			return s.Replace("\r\n", "\n").Replace('\r', '\n');
+		private static void LfLine(string s, string[] p, bool re) {
+			Console.WriteLine(s.Replace("\r\n", "\n").Replace('\r', '\n'));
 		}
 		/// <summary>
 		/// Convert input string to upper case.
@@ -287,8 +287,8 @@ namespace orez.ostring {
 		/// <param name="s">Input string.</param>
 		/// <param name="p">NA.</param>
 		/// <returns>Upper cased string.</returns>
-		private static string UpperCase(string s, string[] p, bool re) {
-			return s.ToUpper();
+		private static void UpperCase(string s, string[] p, bool re) {
+			Console.WriteLine(s.ToUpper());
 		}
 
 		/// <summary>
