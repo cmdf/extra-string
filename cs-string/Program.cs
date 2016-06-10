@@ -28,12 +28,32 @@ namespace orez.ostring {
 			{ "put", new Fn(Put)}, {"range", new Fn(Range)}, { "remove", new Fn(Remove)}, { "replace", new Fn(Replace)},
 			{"reverse", new Fn(Reverse)}, {"size", new Fn(Size)}, {"startswith", new Fn(StartsWith)}, {"uppercase", new Fn(UpperCase)}
 		};
+		/*
+		Escape characters in batch:
+			^\  ^&  ^|  ^>  ^<  ^^
+			^+CRLF = nothing
+			%%
+			^^! if enable delayed expansion
+		*/
 		/// <summary>
-		/// To be dealt with later.
+		/// String Encode table for DOS without delayed expansion enabled.
 		/// </summary>
-		private static IDictionary<string, string> DefEsc = new Dictionary<string, string> {
-			{ "\"", "\\\"" }, { "\\", "\\\\" }, { "\a", "\\a" }, {"\b", "\\b" }, {"\f", "\\f" },
-			{"\n", "\\n" }, {"\r", "\\r" }, {"\t", "\\t" }, {"\v", "\\v" }, {"\0", "\\0" }
+		private static IDictionary<string, string> EncDos = new Dictionary<string, string> {
+			["\\"] = "^\\", ["&"] = "^&", ["|"] = "^|", [">"] = "^>", ["<"] = "^<", ["^"] = "^^", ["%"] = "%%", [""] = "^\r\n"
+		};
+		/// <summary>
+		/// String Encode table for DOS with delayed expansion enabled.
+		/// </summary>
+		private static IDictionary<string, string> EncDose = new Dictionary<string, string> {
+			["\\"] = "^\\", ["&"] = "^&", ["|"] = "^|", [">"] = "^>", ["<"] = "^<", ["^"] = "^^", ["%"] = "%%", [""] = "^\r\n",
+			["!"] = "^^!"
+		};
+		/// <summary>
+		/// String Encode table for standard coding language.
+		/// </summary>
+		private static IDictionary<string, string> EncCode = new Dictionary<string, string> {
+			["\""] = "\\\"", ["\\"] = "\\\\", ["\a"] = "\\a", ["\b"] = "\\b", ["\f"] = "\\f", ["\n"] = "\\n", ["\r"] = "\\r",
+			["\t"] = "\\t", ["\v"] = "\\v", ["\0"] = "\\0"
 		};
 		/// <summary>
 		/// Regex options associated with characters.
@@ -299,7 +319,13 @@ namespace orez.ostring {
 			Console.WriteLine(s.ToUpper());
 		}
 
-
+		/*
+		Escape characters in batch:
+			^\  ^&  ^|  ^>  ^<  ^^
+			^+CRLF = nothing
+			%%
+			^^! if enable delayed expansion
+		*/
 		private static string Encode(string s, string typ) {
 			switch (typ) {
 				case "html":
