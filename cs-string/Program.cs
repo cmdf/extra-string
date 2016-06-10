@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Text;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 
@@ -130,12 +131,12 @@ namespace orez.ostring {
 		/// <param name="s">Input string.</param>
 		/// <param name="p">times.</param>
 		/// <returns>Copied string.</returns>
-		private static string Copy(string s, string[] p, bool re) {
-			string t = "";
+		private static void Copy(string s, string[] p, bool re) {
+			StringBuilder t = new StringBuilder();
 			int n = Math.Abs(Int(p, 0));
       for(int i = 0; i < n; i++)
-				t += s;
-			return t;
+				t.Append(s);
+			Console.WriteLine(t);
 		}
 		/// <summary>
 		/// Check whether input string ends with suffix.
