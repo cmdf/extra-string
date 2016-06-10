@@ -506,7 +506,20 @@ namespace orez.ostring {
 			else Console.WriteLine(o);
 		}
 
-		private static string 
+		private static string Casie(string s, string[] p, int n) {
+			if (n >= p.Length) return s;
+			string[] c = p[n + 1].Split('^');
+			string r = p[n], c0 = c[0], c1 = c.Length > 1 ? c[1] : "";
+			int i = 0;
+			Match m = RegEx(r).Match(s);
+			for(; m.Success; m = m.NextMatch()) {
+				string m1 = s.Substring()
+			}
+			return null;
+		}
+		private static string CasieY(string s, string c) {
+
+		}
 
 		// regex pattern for recursively matching words and applying below rules:
 		// . = keep
