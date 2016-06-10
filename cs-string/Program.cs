@@ -194,8 +194,8 @@ namespace orez.ostring {
 		/// <param name="s">Input string.</param>
 		/// <param name="p">NA.</param>
 		/// <returns>Lower cased string.</returns>
-		private static string LowerCase(string s, string[] p, bool re) {
-			return s.ToLower();
+		private static void LowerCase(string s, string[] p, bool re) {
+			Console.WriteLine(s.ToLower());
 		}
 		/// <summary>
 		/// Put a string onto input string at specified index.
