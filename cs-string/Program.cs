@@ -226,10 +226,10 @@ namespace orez.ostring {
 		/// <param name="s">Input string.</param>
 		/// <param name="p">length, index.</param>
 		/// <returns>Removed string.</returns>
-		private static string Remove(string s, string[] p, bool re) {
+		private static void Remove(string s, string[] p, bool re) {
 			int l = Indx(Int(p, 0), s);
 			int i = Indx(Int(p, 1, s.Length - l), s);
-			return s.Remove(i, l);
+			Console.WriteLine(s.Remove(i, l));
 		}
 		/// <summary>
 		/// Replace a search string with new string in input string.
