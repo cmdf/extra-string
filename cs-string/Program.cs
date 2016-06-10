@@ -37,7 +37,8 @@ namespace orez.ostring {
 		/// Regex options associated with characters.
 		/// </summary>
 		private static IDictionary<char, RegexOptions> ReOpt = new Dictionary<char, RegexOptions> {
-			['i'] = RegexOptions.IgnoreCase, ['m'] = RegexOptions.Multiline, ['r'] = RegexOptions.RightToLeft, ['s'] = RegexOptions.Singleline
+			['i'] = RegexOptions.IgnoreCase, ['m'] = RegexOptions.Multiline, ['r'] = RegexOptions.RightToLeft,
+			['s'] = RegexOptions.Singleline
 		};
 
 
