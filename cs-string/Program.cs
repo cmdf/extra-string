@@ -506,6 +506,13 @@ namespace orez.ostring {
 			else Console.WriteLine(o);
 		}
 
+		// regex pattern for recursively matching words and applying below rules:
+		// . = keep
+		// 1 = upcase
+		// 0 = lowcase
+		// ?+* = repeaters
+		// () = encapsulators
+		// ! = apply rule for non-matched
 		// case definition for chaning
 		// multi-line operate, input stream operate
 	}
