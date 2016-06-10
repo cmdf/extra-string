@@ -26,7 +26,8 @@ namespace orez.ostring {
 			{"add",  new Fn(Add)}, {"get", new Fn(Get)}, {"compare", new Fn(Compare)}, {"copy", new Fn(Copy)},
 			{ "endswith", new Fn(EndsWith)}, {"find",  new Fn(Find)}, {"format", new Fn(Format)}, {"lowercase", new Fn(LowerCase)},
 			{ "put", new Fn(Put)}, {"range", new Fn(Range)}, { "remove", new Fn(Remove)}, { "replace", new Fn(Replace)},
-			{"reverse", new Fn(Reverse)}, {"size", new Fn(Size)}, {"startswith", new Fn(StartsWith)}, {"uppercase", new Fn(UpperCase)}
+			{"reverse", new Fn(Reverse)}, {"size", new Fn(Size)}, {"startswith", new Fn(StartsWith)}, {"uppercase", new Fn(UpperCase)},
+			{"encode", new Fn(Encode)}, {"decode", new Fn(Decode)}
 		};
 		/// <summary>
 		/// String Encode table for DOS without delayed expansion enabled.
@@ -113,6 +114,17 @@ namespace orez.ostring {
 			Console.WriteLine(s.Insert(i, t));
 		}
 		/// <summary>
+		/// Decode or Unescape string to original form.
+		/// </summary>
+		/// <param name="s">Input string.</param>
+		/// <param name="p">type.</param>
+		/// <returns>Decoded string.</returns>
+		/// <returns></returns>
+		private static void Decode(string s, string[] p, bool re) {
+			string t = Str(p, 0);
+			Console.WriteLine(Decode(s, t));
+		}
+		/// <summary>
 		/// Get a part of input string.
 		/// </summary>
 		/// <param name="s">Input string.</param>
@@ -165,22 +177,15 @@ namespace orez.ostring {
 			Console.WriteLine(m.Length == t.Length ? "1" : "0");
 		}
 		/// <summary>
-		/// Do some escaping!!!!!!!
+		/// Encode or Escape string to coded form.
 		/// </summary>
-		/// <param name="s"></param>
-		/// <param name="p"></param>
-		/// <param name="re"></param>
+		/// <param name="s">Input string.</param>
+		/// <param name="p">type.</param>
+		/// <returns>Encoded string.</returns>
 		/// <returns></returns>
-		private static void Escape(string s, string[] p, bool re) {
+		private static void Encode(string s, string[] p, bool re) {
 			string t = Str(p, 0);
-			switch(t.ToLower()) {
-				case "regex":
-				case "r":
-					Console.WriteLine(Regex.Escape(s));
-					break;
-				default:
-					break;
-			}
+			Console.WriteLine(Encode(s, t));
 		}
 		/// <summary>
 		/// Find index of string in the input string.
