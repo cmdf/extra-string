@@ -18,9 +18,9 @@ namespace orez.ostring {
 
 		// data
 		/// <summary>
-		/// This is not complete yet.
+		/// Associates function name with the actual function.
 		/// </summary>
-		private static IDictionary<string, Fn> Cmd = new Dictionary<string, Fn> {
+		private static IDictionary<string, Fn> StrFn = new Dictionary<string, Fn> {
 			{"add",  new Fn(Add)}, {"get", new Fn(Get)}, {"compare", new Fn(Compare)}, {"copy", new Fn(Copy)},
 			{ "endswith", new Fn(EndsWith)}, {"find",  new Fn(Find)}, {"format", new Fn(Format)}, {"lowercase", new Fn(LowerCase)},
 			{ "put", new Fn(Put)}, {"range", new Fn(Range)}, { "remove", new Fn(Remove)}, { "replace", new Fn(Replace)},
@@ -50,7 +50,7 @@ namespace orez.ostring {
 		static void Main(string[] args) {
 			string s = new StreamReader(Console.OpenStandardInput()).ReadToEnd();
 			oParams p = GetOpt(args);
-			if(Cmd.ContainsKey(p.fn))	Console.WriteLine(Cmd[p.fn](s, p.args, p.regex));
+			if(StrFn.ContainsKey(p.fn))	Console.WriteLine(StrFn[p.fn](s, p.args, p.regex));
 		}
 
 		/// <summary>
