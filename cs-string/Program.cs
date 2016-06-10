@@ -103,10 +103,10 @@ namespace orez.ostring {
 		/// <param name="s">Input string.</param>
 		/// <param name="p">index, length.</param>
 		/// <returns>Part of string.</returns>
-		private static string Get(string s, string[] p, bool re) {
+		private static void Get(string s, string[] p, bool re) {
 			int i = Indx(Int(p, 0), s);
 			int e = Indx(i + Int(p, 1, 1), s);
-			return s.Substring(i, e - i);
+			Console.WriteLine(s.Substring(i, e - i));
 		}
 		/// <summary>
 		/// Compare two strings.
