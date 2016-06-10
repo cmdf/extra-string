@@ -119,10 +119,10 @@ namespace orez.ostring {
 		///   == 0 - if both the strings are equal.
 		/// &lt; 0 - if 1st string comes before 2nd string.
 		/// </returns>
-		private static string Compare(string s, string[] p, bool re) {
+		private static void Compare(string s, string[] p, bool re) {
 			string t = Str(p, 0);
-			if(!re) return s.CompareTo(t).ToString();
-			return RegEx(t).Match(s).Length == s.Length ? "0" : "-1";
+			if(!re) { Console.WriteLine(s.CompareTo(t)); return; }
+			Console.WriteLine(RegEx(t).Match(s).Length == s.Length ? "0" : "-1");
 		}
 		/// <summary>
 		/// Copies input string specified number of times.
