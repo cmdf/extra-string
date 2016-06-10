@@ -157,16 +157,16 @@ namespace orez.ostring {
 		/// <param name="p"></param>
 		/// <param name="re"></param>
 		/// <returns></returns>
-		private static string Escape(string s, string[] p, bool re) {
+		private static void Escape(string s, string[] p, bool re) {
 			string t = Str(p, 0);
 			switch(t.ToLower()) {
 				case "regex":
 				case "r":
-					return Regex.Escape(s);
+					Console.WriteLine(Regex.Escape(s));
+					break;
 				default:
 					break;
 			}
-			return null;
 		}
 		/// <summary>
 		/// Find index of string in the input string.
