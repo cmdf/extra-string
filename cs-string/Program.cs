@@ -242,7 +242,9 @@ namespace orez.ostring {
 		/// <returns>Replaced string.</returns>
 		private static void Replace(string s, string[] p, bool re) {
 			string t = Str(p, 0), u = Str(p, 1);
-			Console.WriteLine(t == "" ? string.Join(u, t.ToCharArray()) : s.Replace(t, u));
+			if (t == "") Console.WriteLine(string.Join(u, t.ToCharArray()));
+			else if (!re) Console.WriteLine(s.Replace(t, u));
+			else Console.WriteLine(RegEx(t).Replace(s, u));
 		}
 		/// <summary>
 		/// Reverse a string.
