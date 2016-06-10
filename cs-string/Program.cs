@@ -26,7 +26,7 @@ namespace orez.ostring {
 			["size"] = new Fn(Size), ["get"] = new Fn(Get), ["range"] = new Fn(Range),
 			["find"] = new Fn(Find), ["compare"] = new Fn(Compare), ["startswith"] = new Fn(StartsWith), ["endswith"] = new Fn(EndsWith),
 			["code"] = new Fn(Code), ["encode"] = new Fn(Encode), ["decode"] = new Fn(Decode),
-			["copy"] = new Fn(Copy), ["format"] = new Fn(Format), ["pad"] = new Fn(Pad),
+			["copy"] = new Fn(Copy), ["format"] = new Fn(Format), ["pad"] = new Fn(Pad), ["trim"] = new Fn(Trim),
 			["add"] = new Fn(Add), ["put"] = new Fn(Put),	["replace"] = new Fn(Replace), ["remove"] = new Fn(Remove), ["reverse"] = new Fn(Reverse)
 		};
 		/// <summary>
@@ -241,13 +241,27 @@ namespace orez.ostring {
 		/// Pad input string on the left and/or right.
 		/// </summary>
 		/// <param name="s">Input string.</param>
-		/// <param name="p">pad, times, dir.</param>
+		/// <param name="p">times, dir, pad.</param>
 		/// <param name="re">NA.</param>
 		private static void Pad(string s, string[] p, bool re) {
-			string t = Str(p, 0, " ");
-			int n = Int(p, 1, 1), d = Int(p, 2);
+			int n = Int(p, 0, 1), d = Int(p, 1);
+			string t = Str(p, 2, " ");
 			string r = Repeat(t, n);
 			Print((d <= 0 ? r : "") + s + (d >= 0 ? r : ""));
+		}
+		/// <summary>
+		/// Trim input string on the left and/or right.
+		/// </summary>
+		/// <param name="s">Input string.</param>
+		/// <param name="p">dir, trim.</param>
+		/// <param name="re">NA.</param>
+		private static void Trim(string s, string[] p, bool re) {
+			int d = Int(p, 0);
+			char[] t = Str(p, 1, " \t\r\n").ToCharArray();
+			if (t.Length == 0) Print(s);
+			else if (d < 0) Print(s.TrimStart(t));
+			else if (d > 0) Print(s.TrimEnd(t));
+			else Print(s.Trim(t));
 		}
 		/// <summary>
 		/// Add a string to input string.
@@ -482,7 +496,6 @@ namespace orez.ostring {
 			else Console.WriteLine(o);
 		}
 
-		// 1 trim, 1 pad
 		// line -> generic line find and replace?
 		// case definition for chaning
 		// multi-line operate, input stream operate
