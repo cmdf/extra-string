@@ -25,7 +25,7 @@ namespace orez.ostring {
 		private static IDictionary<string, Fn> StrFn = new Dictionary<string, Fn> {
 			["size"] = new Fn(Size), ["get"] = new Fn(Get), ["range"] = new Fn(Range),
 			["find"] = new Fn(Find), ["compare"] = new Fn(Compare), ["startswith"] = new Fn(StartsWith), ["endswith"] = new Fn(EndsWith),
-			["code"] = new Fn(Code), ["encode"] = new Fn(Encode), ["decode"] = new Fn(Decode),
+			["code"] = new Fn(Code), ["encode"] = new Fn(Encode), ["decode"] = new Fn(Decode), ["line"] = new Fn(Line),
 			["copy"] = new Fn(Copy), ["format"] = new Fn(Format), ["pad"] = new Fn(Pad), ["trim"] = new Fn(Trim),
 			["add"] = new Fn(Add), ["put"] = new Fn(Put),	["replace"] = new Fn(Replace), ["remove"] = new Fn(Remove), ["reverse"] = new Fn(Reverse)
 		};
@@ -216,6 +216,16 @@ namespace orez.ostring {
 		private static void Decode(string s, string[] p, bool re) {
 			string t = Str(p, 0);
 			Print(Decode(s, t));
+		}
+		/// <summary>
+		/// Replace line endings in input string.
+		/// </summary>
+		/// <param name="s">Input string.</param>
+		/// <param name="p">ending.</param>
+		/// <param name="re">NA.</param>
+		private static void Line(string s, string[] p, bool re) {
+			string t = Str(p, 0, "\r\n");
+			Print(Regex.Replace(s, "(\r\n)|(\r)|(\n)", t));
 		}
 		/// <summary>
 		/// Copies input string specified number of times.
@@ -496,7 +506,6 @@ namespace orez.ostring {
 			else Console.WriteLine(o);
 		}
 
-		// line -> generic line find and replace?
 		// case definition for chaning
 		// multi-line operate, input stream operate
 	}
