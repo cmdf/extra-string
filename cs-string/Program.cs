@@ -215,10 +215,10 @@ namespace orez.ostring {
 		/// <param name="s">Input string.</param>
 		/// <param name="p">start, end.</param>
 		/// <returns>Part of string.</returns>
-		private static string Range(string s, string[] p, bool re) {
+		private static void Range(string s, string[] p, bool re) {
 			int i = Indx(Int(p, 0), s);
 			int e = Indx(Int(p, 1, s.Length), s);
-			return s.Substring(i, e - i);
+			Console.WriteLine(s.Substring(i, e - i));
 		}
 		/// <summary>
 		/// Remove part of input string.
