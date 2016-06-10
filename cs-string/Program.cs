@@ -144,11 +144,11 @@ namespace orez.ostring {
 		/// <param name="s">Input string.</param>
 		/// <param name="p">suffix.</param>
 		/// <returns>1 if true, 0 otherwise.</returns>
-		private static string EndsWith(string s, string[] p, bool re) {
+		private static void EndsWith(string s, string[] p, bool re) {
 			string t = Str(p, 0);
-			if(!re) return s.EndsWith(t) ? "1" : "0";
+			if(!re) Console.WriteLine(s.EndsWith(t) ? "1" : "0");
 			Match m = RegEx(t, RegexOptions.RightToLeft).Match(s);
-			return m.Index + m.Length >= s.Length ? "1" : "0";
+			Console.WriteLine(m.Index + m.Length >= s.Length ? "1" : "0");
 		}
 		/// <summary>
 		/// Do some escaping!!!!!!!
