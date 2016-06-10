@@ -27,7 +27,7 @@ namespace orez.ostring {
 			{ "endswith", new Fn(EndsWith)}, {"find",  new Fn(Find)}, {"format", new Fn(Format)}, {"lowercase", new Fn(LowerCase)},
 			{ "put", new Fn(Put)}, {"range", new Fn(Range)}, { "remove", new Fn(Remove)}, { "replace", new Fn(Replace)},
 			{"reverse", new Fn(Reverse)}, {"size", new Fn(Size)}, {"startswith", new Fn(StartsWith)}, {"uppercase", new Fn(UpperCase)},
-			{"encode", new Fn(Encode)}, {"decode", new Fn(Decode)}
+			{"encode", new Fn(Encode)}, {"decode", new Fn(Decode)}, {"code", new Fn(Code)}
 		};
 		/// <summary>
 		/// String Encode table for DOS without delayed expansion enabled.
@@ -112,6 +112,17 @@ namespace orez.ostring {
 			string t = Str(p, 0);
 			int i = Indx(Int(p, 1, s.Length), s);
 			Console.WriteLine(s.Insert(i, t));
+		}
+		
+		/// <summary>
+		/// Get character codes for each character in the string.
+		/// </summary>
+		/// <param name="s">Input string.</param>
+		/// <param name="p">NA.</param>
+		/// <param name="re">Is input search string regex?</param>
+		private static void Code(string s, string[] p, bool re) {
+			for (int i = 0; i < s.Length; i++)
+				Console.WriteLine((uint)s[i]);
 		}
 		/// <summary>
 		/// Decode or Unescape string to original form.
