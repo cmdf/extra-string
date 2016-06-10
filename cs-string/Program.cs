@@ -306,10 +306,15 @@ namespace orez.ostring {
 
 		private static string Decode(string s, string typ) {
 			switch(typ) {
+				case "html":
+				case "h":
+					return HttpUtility.HtmlDecode(s);
 				case "url":
 				case "u":
 					return HttpUtility.UrlDecode(s);
-
+				case "regex":
+				case "r":
+					return Regex.Unescape(s);
 			}
 			return null;
 		}
