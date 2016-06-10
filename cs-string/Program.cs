@@ -174,11 +174,10 @@ namespace orez.ostring {
 		/// <param name="s">Input string.</param>
 		/// <param name="p">start, direction.</param>
 		/// <returns></returns>
-		private static string Find(string s, string[] p, bool re) {
+		private static void Find(string s, string[] p, bool re) {
 			string t = Str(p, 0);
 			int i = Indx(Int(p, 1), s), d = Int(p, 1);
-			if(!re) return (d >= 0 ? s.IndexOf(t, i) : s.LastIndexOf(t, i)).ToString();
-			return null;
+			if(!re) Console.WriteLine((d >= 0 ? s.IndexOf(t, i) : s.LastIndexOf(t, i)));
 		}
 		/// <summary>
 		/// Uses input string as format to embed parameter strings.
