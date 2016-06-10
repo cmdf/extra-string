@@ -119,7 +119,7 @@ namespace orez.ostring {
 		private static void Get(string s, string[] p, bool re) {
 			int i = Indx(Int(p, 0), s);
 			int e = Indx(i + Int(p, 1, 1), s);
-			Console.Write(s.Substring(i, e - i));
+			Print(s.Substring(i, e - i));
 		}
 		/// <summary>
 		/// Get a specified range of input string.
@@ -130,7 +130,7 @@ namespace orez.ostring {
 		private static void Range(string s, string[] p, bool re) {
 			int i = Indx(Int(p, 0), s);
 			int e = Indx(Int(p, 1, s.Length), s);
-			Console.Write(s.Substring(i, e - i));
+			Print(s.Substring(i, e - i));
 		}
 		/// <summary>
 		/// Find index of string in the input string.
@@ -205,7 +205,7 @@ namespace orez.ostring {
 		/// <param name="re">NA.</param>
 		private static void Encode(string s, string[] p, bool re) {
 			string t = Str(p, 0);
-			Console.Write(Encode(s, t));
+			Print(Encode(s, t));
 		}
 		/// <summary>
 		/// Decode or Unescape string to original form.
@@ -215,7 +215,7 @@ namespace orez.ostring {
 		/// <param name="re">NA.</param>
 		private static void Decode(string s, string[] p, bool re) {
 			string t = Str(p, 0);
-			Console.Write(Decode(s, t));
+			Print(Decode(s, t));
 		}
 		/// <summary>
 		/// Copies input string specified number of times.
@@ -228,7 +228,7 @@ namespace orez.ostring {
 			int n = Math.Abs(Int(p, 0));
 			for (int i = 0; i < n; i++)
 				t.Append(s);
-			Console.Write(t);
+			Print(t);
 		}
 		/// <summary>
 		/// Uses input string as format to embed parameter strings.
@@ -237,7 +237,7 @@ namespace orez.ostring {
 		/// <param name="p">parameters.</param>
 		/// <param name="re">NA.</param>
 		private static void Format(string s, string[] p, bool re) {
-			Console.Write(string.Format(s, p));
+			Print(string.Format(s, p));
 		}
 		/// <summary>
 		/// Add a string to input string.
@@ -248,7 +248,7 @@ namespace orez.ostring {
 		private static void Add(string s, string[] p, bool re) {
 			string t = Str(p, 0);
 			int i = Indx(Int(p, 1, s.Length), s);
-			Console.Write(s.Insert(i, t));
+			Print(s.Insert(i, t));
 		}
 		/// <summary>
 		/// Put a string onto input string at specified index.
@@ -260,7 +260,7 @@ namespace orez.ostring {
 			string t = Str(p, 0);
 			int i = Indx(Int(p, 1), s);
 			int e = Indx(i + t.Length, s);
-			Console.Write(s.Remove(i, e - i).Insert(i, t));
+			Print(s.Remove(i, e - i).Insert(i, t));
 		}
 		/// <summary>
 		/// Replace a search string with new string in input string.
@@ -270,9 +270,9 @@ namespace orez.ostring {
 		/// <param name="re">Is search string regex?</param>
 		private static void Replace(string s, string[] p, bool re) {
 			string t = Str(p, 0), u = Str(p, 1);
-			if (t == "") Console.Write(string.Join(u, t.ToCharArray()));
-			else if (!re) Console.Write(s.Replace(t, u));
-			else Console.Write(RegEx(t).Replace(s, u));
+			if (t == "") Print(string.Join(u, t.ToCharArray()));
+			else if (!re) Print(s.Replace(t, u));
+			else Print(RegEx(t).Replace(s, u));
 		}
 		/// <summary>
 		/// Remove part of input string.
@@ -283,7 +283,7 @@ namespace orez.ostring {
 		private static void Remove(string s, string[] p, bool re) {
 			int l = Indx(Int(p, 0), s);
 			int i = Indx(Int(p, 1, s.Length - l), s);
-			Console.Write(s.Remove(i, l));
+			Print(s.Remove(i, l));
 		}
 		/// <summary>
 		/// Reverse a string.
@@ -294,7 +294,7 @@ namespace orez.ostring {
 		private static void Reverse(string s, string[] p, bool re) {
 			char[] c = s.ToCharArray();
 			Array.Reverse(c);
-			Console.Write(new string(c));
+			Print(new string(c));
 		}
 
 		/// <summary>
@@ -304,7 +304,7 @@ namespace orez.ostring {
 		/// <param name="p">NA.</param>
 		/// <param name="re">NA.</param>
 		private static void LowerCase(string s, string[] p, bool re) {
-			Console.Write(s.ToLower());
+			Print(s.ToLower());
 		}
 		// TODO: can we make this one function for all?
 		/// <summary>
@@ -314,7 +314,7 @@ namespace orez.ostring {
 		/// <param name="p">NA.</param>
 		/// <param name="re">NA.</param>
 		private static void LfLine(string s, string[] p, bool re) {
-			Console.Write(s.Replace("\r\n", "\n").Replace('\r', '\n'));
+			Print(s.Replace("\r\n", "\n").Replace('\r', '\n'));
 		}
 		/// <summary>
 		/// Convert input string to upper case.
@@ -323,7 +323,7 @@ namespace orez.ostring {
 		/// <param name="p">NA.</param>
 		/// <param name="re">NA.</param>
 		private static void UpperCase(string s, string[] p, bool re) {
-			Console.Write(s.ToUpper());
+			Print(s.ToUpper());
 		}
 
 		/// <summary>
@@ -450,6 +450,14 @@ namespace orez.ostring {
 		private static int Int(string[] a, int i, int v=0) {
 			if(a.Length > i) int.TryParse(a[i], out v);
 			return v;
+		}
+		/// <summary>
+		/// Print a line normally on console, but add no line ending in redirected output.
+		/// </summary>
+		/// <param name="o">Input object.</param>
+		private static void Print(object o) {
+			if (Console.IsOutputRedirected) Console.Write(o);
+			else Console.WriteLine(o);
 		}
 
 		// 1 trim, 1 pad
