@@ -1,4 +1,4 @@
-﻿namespace orez.ostring.data {
+﻿namespace orez.ostring.text {
 	/// <summary>
 	/// Encoding types, that can be used to encode to and decode from.
 	/// </summary>

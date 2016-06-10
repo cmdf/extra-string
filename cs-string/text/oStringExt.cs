@@ -3,7 +3,7 @@ using System.Text.RegularExpressions;
 using System.Collections.Generic;
 using System.Web;
 
-namespace orez.ostring.data {
+namespace orez.ostring.text {
 	static class oStringExt {
 
 		// data

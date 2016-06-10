@@ -4,6 +4,7 @@ using System.Text;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using orez.ostring.data;
+using orez.ostring.text;
 
 namespace orez.ostring {
 	class Program {
@@ -319,16 +320,6 @@ namespace orez.ostring {
 		/// <param name="re">NA.</param>
 		private static void LowerCase(string s, string[] p, bool re) {
 			Print(s.ToLower());
-		}
-		// TODO: can we make this one function for all?
-		/// <summary>
-		/// Convert input string to unix line ending.
-		/// </summary>
-		/// <param name="s">Input string.</param>
-		/// <param name="p">NA.</param>
-		/// <param name="re">NA.</param>
-		private static void LfLine(string s, string[] p, bool re) {
-			Print(s.Replace("\r\n", "\n").Replace('\r', '\n'));
 		}
 		/// <summary>
 		/// Convert input string to upper case.
