@@ -50,7 +50,7 @@ namespace orez.ostring {
 		static void Main(string[] args) {
 			string s = new StreamReader(Console.OpenStandardInput()).ReadToEnd();
 			oParams p = GetOpt(args);
-			if(StrFn.ContainsKey(p.fn))	StrFn[p.fn](s, p.args, p.regex));
+			if(StrFn.ContainsKey(p.fn))	StrFn[p.fn](s, p.args, p.regex);
 		}
 
 		/// <summary>
@@ -92,10 +92,10 @@ namespace orez.ostring {
 		/// <param name="s">Input string.</param>
 		/// <param name="p">add, index.</param>
 		/// <returns>Added string.</returns>
-		private static string Add(string s, string[] p, bool re) {
+		private static void Add(string s, string[] p, bool re) {
 			string t = Str(p, 0);
 			int i = Indx(Int(p, 1, s.Length), s);
-			return s.Insert(i, t);
+			Console.WriteLine(s.Insert(i, t));
 		}
 		/// <summary>
 		/// Get a part of input string.
