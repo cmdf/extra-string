@@ -50,7 +50,7 @@ namespace orez.ostring {
 		static void Main(string[] args) {
 			string s = new StreamReader(Console.OpenStandardInput()).ReadToEnd();
 			oParams p = GetOpt(args);
-			if(Cmd.ContainsKey(p.fn))	Console.WriteLine(Cmd[p.fn](s, p.args, p));
+			if(Cmd.ContainsKey(p.fn))	Console.WriteLine(Cmd[p.fn](s, p.args, p.regex));
 		}
 
 		/// <summary>
