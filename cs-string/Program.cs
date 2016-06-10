@@ -26,8 +26,8 @@ namespace orez.ostring {
 			["size"] = new Fn(Size), ["get"] = new Fn(Get), ["range"] = new Fn(Range),
 			["find"] = new Fn(Find), ["compare"] = new Fn(Compare), ["startswith"] = new Fn(StartsWith), ["endswith"] = new Fn(EndsWith),
 			["code"] = new Fn(Code), ["encode"] = new Fn(Encode), ["decode"] = new Fn(Decode),
-			["copy"] = new Fn(Copy), ["format"] = new Fn(Format), ["add"] = new Fn(Add), ["put"] = new Fn(Put),
-			["replace"] = new Fn(Replace), ["remove"] = new Fn(Remove), ["reverse"] = new Fn(Reverse)
+			["copy"] = new Fn(Copy), ["format"] = new Fn(Format), ["pad"] = new Fn(Pad),
+			["add"] = new Fn(Add), ["put"] = new Fn(Put),	["replace"] = new Fn(Replace), ["remove"] = new Fn(Remove), ["reverse"] = new Fn(Reverse)
 		};
 		/// <summary>
 		/// String Encode table for DOS without delayed expansion enabled.
@@ -226,9 +226,7 @@ namespace orez.ostring {
 		private static void Copy(string s, string[] p, bool re) {
 			StringBuilder t = new StringBuilder();
 			int n = Math.Abs(Int(p, 0));
-			for (int i = 0; i < n; i++)
-				t.Append(s);
-			Print(t);
+			Print(Repeat(s, n));
 		}
 		/// <summary>
 		/// Uses input string as format to embed parameter strings.
@@ -238,6 +236,18 @@ namespace orez.ostring {
 		/// <param name="re">NA.</param>
 		private static void Format(string s, string[] p, bool re) {
 			Print(string.Format(s, p));
+		}
+		/// <summary>
+		/// Pad input string on the left and/or right.
+		/// </summary>
+		/// <param name="s">Input string.</param>
+		/// <param name="p">pad, times, dir.</param>
+		/// <param name="re">NA.</param>
+		private static void Pad(string s, string[] p, bool re) {
+			string t = Str(p, 0, " ");
+			int n = Int(p, 1, 1), d = Int(p, 2);
+			string r = Repeat(t, n);
+			Print((d <= 0 ? r : "") + s + (d >= 0 ? r : ""));
 		}
 		/// <summary>
 		/// Add a string to input string.
@@ -420,6 +430,18 @@ namespace orez.ostring {
 			return o;
 		}
 		/// <summary>
+		/// Repeat a string certain number of times.
+		/// </summary>
+		/// <param name="s">Input string.</param>
+		/// <param name="n">Times.</param>
+		/// <returns>Repeated string.</returns>
+		private static string Repeat(string s, int n) {
+			StringBuilder o = new StringBuilder();
+			for (int i = 0; i < n; i++)
+				o.Append(s);
+			return o.ToString();
+		}
+		/// <summary>
 		/// Get ranged index for specified string.
 		/// </summary>
 		/// <param name="s">String value.</param>
@@ -461,8 +483,8 @@ namespace orez.ostring {
 		}
 
 		// 1 trim, 1 pad
-		// isint isdecimal -> can be implemented with regex equals
 		// line -> generic line find and replace?
+		// case definition for chaning
 		// multi-line operate, input stream operate
 	}
 }
