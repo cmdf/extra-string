@@ -14,7 +14,7 @@ namespace orez.ostring {
 		/// <param name="p">Input parameters.</param>
 		/// <param name="re">Indicates search pattern is regex.</param>
 		/// <returns></returns>
-		public delegate string Fn(string s, string[] p, bool re);
+		public delegate void Fn(string s, string[] p, bool re);
 
 		// data
 		/// <summary>
