@@ -32,7 +32,8 @@ namespace orez.ostring {
 			["find"] = new Fn(Find), ["compare"] = new Fn(Compare), ["startswith"] = new Fn(StartsWith), ["endswith"] = new Fn(EndsWith),
 			["code"] = new Fn(Code), ["encode"] = new Fn(Encode), ["decode"] = new Fn(Decode), ["line"] = new Fn(Line),
 			["copy"] = new Fn(Copy), ["format"] = new Fn(Format), ["pad"] = new Fn(Pad), ["trim"] = new Fn(Trim),
-			["add"] = new Fn(Add), ["put"] = new Fn(Put),	["replace"] = new Fn(Replace), ["remove"] = new Fn(Remove), ["reverse"] = new Fn(Reverse)
+			["add"] = new Fn(Add), ["put"] = new Fn(Put),	["replace"] = new Fn(Replace), ["remove"] = new Fn(Remove), ["reverse"] = new Fn(Reverse),
+			["uppercase"] = new Fn(UpperCase), ["lowercase"] = new Fn(LowerCase)
 		};
 		/// <summary>
 		/// Associates encoding name with encoding type enum.
@@ -313,7 +314,6 @@ namespace orez.ostring {
 		private static void Reverse(string s, string[] p, bool re) {
 			Print(s.Reverse());
 		}
-
 		/// <summary>
 		/// Convert input string to lower case.
 		/// </summary>
