@@ -32,7 +32,8 @@ namespace orez.ostring {
 			["find"] = new Fn(Find), ["compare"] = new Fn(Compare), ["startswith"] = new Fn(StartsWith), ["endswith"] = new Fn(EndsWith),
 			["code"] = new Fn(Code), ["encode"] = new Fn(Encode), ["decode"] = new Fn(Decode), ["line"] = new Fn(Line),
 			["copy"] = new Fn(Copy), ["format"] = new Fn(Format), ["pad"] = new Fn(Pad), ["trim"] = new Fn(Trim),
-			["add"] = new Fn(Add), ["put"] = new Fn(Put),	["replace"] = new Fn(Replace), ["remove"] = new Fn(Remove), ["reverse"] = new Fn(Reverse)
+			["add"] = new Fn(Add), ["put"] = new Fn(Put),	["replace"] = new Fn(Replace), ["remove"] = new Fn(Remove), ["reverse"] = new Fn(Reverse),
+			["uppercase"] = new Fn(UpperCase), ["lowercase"] = new Fn(LowerCase)
 		};
 		/// <summary>
 		/// Associates encoding name with encoding type enum.
@@ -99,7 +100,7 @@ namespace orez.ostring {
 		/// Get a part of input string.
 		/// </summary>
 		/// <param name="s">Input string.</param>
-		/// <param name="p">index, length.</param>
+		/// <param name="p">begin, length.</param>
 		/// <param name="re">NA.</param>
 		private static void Get(string s, string[] p, bool re) {
 			int i = Indx(Int(p, 0), s);
@@ -110,7 +111,7 @@ namespace orez.ostring {
 		/// Get a specified range of input string.
 		/// </summary>
 		/// <param name="s">Input string.</param>
-		/// <param name="p">start, end.</param>
+		/// <param name="p">begin, end.</param>
 		/// <param name="re">NA.</param>
 		private static void Range(string s, string[] p, bool re) {
 			int i = Indx(Int(p, 0), s);
@@ -121,12 +122,12 @@ namespace orez.ostring {
 		/// Find index of string in the input string.
 		/// </summary>
 		/// <param name="s">Input string.</param>
-		/// <param name="p">start, direction.</param>
+		/// <param name="p">search, begin, direction.</param>
 		/// <param name="re">Is search string regex?</param>
 		private static void Find(string s, string[] p, bool re) {
 			string t = Str(p, 0);
 			int i = Indx(Int(p, 1), s), d = Int(p, 1, 1);
-			if (!re) for (int n = 0, N = Math.Abs(d); n < N; n++, i = d >= 0 ? i + 1 : i - 1)
+			if (!re) for (int n = 0, N = Math.Abs(d); i >= 0 && i < s.Length && n < N; n++, i = d >= 0 ? i + 1 : i - 1)
 					Console.WriteLine(i = (d >= 0 ? s.IndexOf(t, i) : s.LastIndexOf(t, i)));
 			foreach (Match m in t.RegEx(d < 0 ? RegexOptions.RightToLeft : RegexOptions.None).Matches(s, i))
 				Console.WriteLine(m.Index + " " + m.Length);
@@ -209,7 +210,7 @@ namespace orez.ostring {
 		/// <param name="p">ending.</param>
 		/// <param name="re">NA.</param>
 		private static void Line(string s, string[] p, bool re) {
-			string t = Str(p, 0, "\r\n");
+			string t = Str(p, 0);
 			Print(Regex.Replace(s, "(\r\n)|(\r)|(\n)", t));
 		}
 		/// <summary>
@@ -289,7 +290,7 @@ namespace orez.ostring {
 		/// <param name="re">Is search string regex?</param>
 		private static void Replace(string s, string[] p, bool re) {
 			string t = Str(p, 0), u = Str(p, 1);
-			if (t == "") Print(string.Join(u, t.ToCharArray()));
+			if (t == "") Print(string.Join(u, s.ToCharArray()));
 			else if (!re) Print(s.Replace(t, u));
 			else Print(t.RegEx().Replace(s, u));
 		}
@@ -297,7 +298,7 @@ namespace orez.ostring {
 		/// Remove part of input string.
 		/// </summary>
 		/// <param name="s">Input string.</param>
-		/// <param name="p">length, index.</param>
+		/// <param name="p">size, index.</param>
 		/// <param name="re">NA.</param>
 		private static void Remove(string s, string[] p, bool re) {
 			int l = Indx(Int(p, 0), s);
@@ -313,7 +314,6 @@ namespace orez.ostring {
 		private static void Reverse(string s, string[] p, bool re) {
 			Print(s.Reverse());
 		}
-
 		/// <summary>
 		/// Convert input string to lower case.
 		/// </summary>

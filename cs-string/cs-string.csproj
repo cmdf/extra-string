@@ -45,7 +45,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="data\oIDictionaryExt.cs" />
-    <Compile Include="text\oCasie.cs" />
     <Compile Include="text\oEncType.cs" />
     <Compile Include="text\oStringExt.cs" />
     <Compile Include="oParams.cs" />
