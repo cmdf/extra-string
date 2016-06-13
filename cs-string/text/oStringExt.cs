@@ -16,13 +16,13 @@ namespace orez.ostring.text {
 		/// String Encode table for DOS without delayed expansion enabled.
 		/// </summary>
 		private static IDictionary<string, string> EncDos = new Dictionary<string, string> {
-			["\\"] = "^\\", ["&"] = "^&", ["|"] = "^|", [">"] = "^>", ["<"] = "^<", ["^"] = "^^", ["%"] = "%%", [""] = "^\r\n"
+			["^"] = "^^",	["\\"] = "^\\", ["&"] = "^&", ["|"] = "^|", [">"] = "^>", ["<"] = "^<", ["%"] = "%%", [""] = "^\r\n"
 		};
 		/// <summary>
 		/// String Encode table for DOS with delayed expansion enabled.
 		/// </summary>
 		private static IDictionary<string, string> EncDose = new Dictionary<string, string> {
-			["\\"] = "^\\", ["&"] = "^&", ["|"] = "^|", [">"] = "^>", ["<"] = "^<", ["^"] = "^^", ["%"] = "%%", [""] = "^\r\n",
+			["^"] = "^^", ["\\"] = "^\\", ["&"] = "^&", ["|"] = "^|", [">"] = "^>", ["<"] = "^<", ["%"] = "%%", [""] = "^\r\n",
 			["!"] = "^^!"
 		};
 		/// <summary>
