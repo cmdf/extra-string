@@ -229,3 +229,111 @@ Perform String Functions in the Windows Console.
 :: replace line ending in input file to ";"
 > cat watershed.log|ostring line ";"
 ```
+
+
+### copy
+
+```batch
+:: copy input string specified number of times
+> ostring [options] copy [<times>]
+```
+
+```batch
+:: copy input string 5 times
+> ostring -i "i-win." 5
+```
+
+
+### format
+
+```batch
+:: use input string as format to embed parameter strings
+> ostring [options] format [<parameter>]...
+```
+
+```batch
+:: yet another way to read "Alice in the Wonderland"
+> ostring -i "{0} in the {1}" format "Alice" "Wonderland"
+```
+
+
+### pad
+
+```batch
+:: pad input string on the left and/or right
+> ostring [options] [<times>] [<direction>] [<pad string>]
+```
+
+```batch
+:: pad input string with 1 space on left and right
+> ostring -i "Pillar of Autumn" pad
+
+:: pad input string with 4 spaces on left and right
+> ostring -i "Halo" pad 4
+
+:: pad input string with 8 spaces on the left only
+> ostring -i "Truth and Reconciliation" 8 -1
+
+:: pad input string with 56 "." on the right only
+> ostring -i "The Silent Cartographer" 56 1 "."
+```
+
+
+### trim
+
+```batch
+:: trim input string on the left and/or right
+> ostring [options] trim [<direction>] [<trim characters>]
+```
+
+```batch
+:: trim input string on the left and right, of white space
+> ostring -i "  Assault on the Control Room  " trim
+
+:: trim input string on the right only, of white space
+> ostring -e c -i " 343 Guilty Spark\t\t\t" trim 1
+
+:: trim input string on left and right of whitespace and "."
+> ostring -e c -i " ...The Library... " trim 0 " \t\r\n."
+```
+
+
+### add
+
+```batch
+:: add a string to input string
+> ostring [options] add [<add string>] [<index>]
+```
+
+```batch
+:: add a string to the end of input string
+> ostring -i "Two " add "Betrayals"
+
+:: add a string at index 1 of input string
+> ostring -i "Kes" add "ey" 1
+```
+
+
+### put
+
+```batch
+:: put a string onto input string at specified index
+> ostring [options] put [<put string>] [<index>]
+```
+
+```batch
+:: put a string at the begining of input string
+> ostring -i "One Maw" put "The"
+
+:: put a string at index x of input string
+> ostring -i ""
+```
+
+
+
+
+
+
+
+
+
