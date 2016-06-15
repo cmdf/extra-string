@@ -325,15 +325,85 @@ Perform String Functions in the Windows Console.
 :: put a string at the begining of input string
 > ostring -i "One Maw" put "The"
 
-:: put a string at index x of input string
-> ostring -i ""
+:: put a string at index 7 of input string
+> ostring -i "Battle Fight" put "Creek" 7
 ```
 
 
+### replace
+
+```batch
+:: replace a search string with new string in input string
+> ostring [options] replace [<search string>] [<new string>]
+```
+
+```batch
+:: remove all "oo" from input string
+> ostring -i "Blood Gulch" replace "oo"
+
+:: replace all "o" with "a" in input string
+> ostring -i "Boarding Action" replace "o" "a"
+
+:: replace regular expression "(ll)|(ut)" with "n" in input string
+> ostring -r -i "Chill Out" replace "(ll)|(ut)" "n"
+```
 
 
+### remove
+
+```batch
+:: remove part of input string
+> ostring [options] remove [<size>] [<index>]
+```
+
+```batch
+:: remove " loaded" of size 7 from input string
+> ostring -i "Chiron TL-43 loaded" remove 7
+
+:: remove "Your " of size 5 at index 0 from input string
+> ostring -i "Your Damnation" remove 5 0
+```
 
 
+### reverse
+
+```batch
+:: reverse a string
+> ostring [options] reverse
+```
+
+```batch
+:: reverse the input string
+> ostring -i "noynaC regnaD" reverse
+```
 
 
+### lowercase
 
+```batch
+:: convert input string to lower case
+> ostring [options] lowercase
+```
+
+```batch
+:: lower case the input string
+> ostring -i "Death Island" lowercase
+```
+
+
+### uppercase
+
+```batch
+:: convert input string to upper case
+> ostring [options] uppercase
+```
+
+```batch
+:: upper case the input string
+> ostring -i "Derelict" uppercase
+```
+
+
+## license
+
+Do you have a Poké ball? That's enough!

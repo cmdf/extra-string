@@ -290,7 +290,7 @@ namespace orez.ostring {
 		/// <param name="re">Is search string regex?</param>
 		private static void Replace(string s, string[] p, bool re) {
 			string t = Str(p, 0), u = Str(p, 1);
-			if (t == "") Print(string.Join(u, t.ToCharArray()));
+			if (t == "") Print(string.Join(u, s.ToCharArray()));
 			else if (!re) Print(s.Replace(t, u));
 			else Print(t.RegEx().Replace(s, u));
 		}
@@ -298,7 +298,7 @@ namespace orez.ostring {
 		/// Remove part of input string.
 		/// </summary>
 		/// <param name="s">Input string.</param>
-		/// <param name="p">length, index.</param>
+		/// <param name="p">size, index.</param>
 		/// <param name="re">NA.</param>
 		private static void Remove(string s, string[] p, bool re) {
 			int l = Indx(Int(p, 0), s);
