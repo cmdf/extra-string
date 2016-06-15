@@ -402,8 +402,3 @@ Perform String Functions in the Windows Console.
 :: upper case the input string
 > ostring -i "Derelict" uppercase
 ```
-
-
-## license
-
-Do you have a Poké ball? That's enough!
