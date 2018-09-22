@@ -1,7 +1,7 @@
 ﻿namespace App {
 
 	/// <summary>
-	/// Defines input parameters to ostring.
+	/// Defines input parameters to estring.
 	/// </summary>
 	class Params {
 		

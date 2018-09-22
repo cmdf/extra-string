@@ -55,7 +55,7 @@ namespace App {
 		}
 
 		/// <summary>
-		/// Get input options to ostring.
+		/// Get input options to estring.
 		/// </summary>
 		/// <param name="args">Input arguments.</param>
 		/// <returns>Input options.</returns>
