@@ -4,12 +4,12 @@ using System.Text.RegularExpressions;
 using System.Collections.Generic;
 using System.Web;
 
-namespace orez.ostring.text {
+namespace App.text {
 
 	/// <summary>
 	/// Defines string extension methods.
 	/// </summary>
-	static class oStringExt {
+	static class StringExt {
 
 		// data
 		/// <summary>
@@ -48,19 +48,19 @@ namespace orez.ostring.text {
 		/// <param name="s">Input string.</param>
 		/// <param name="typ">Encoding type.</param>
 		/// <returns></returns>
-		public static string Encode(this string s, oEncType typ) {
+		public static string Encode(this string s, EncType typ) {
 			switch (typ) {
-				case oEncType.Html:
+				case EncType.Html:
 					return HttpUtility.HtmlEncode(s);
-				case oEncType.Url:
+				case EncType.Url:
 					return HttpUtility.UrlEncode(s);
-				case oEncType.Dos:
+				case EncType.Dos:
 					return s.Replace(EncDos, true);
-				case oEncType.Dose:
+				case EncType.Dose:
 					return s.Replace(EncDose, true);
-				case oEncType.Regex:
+				case EncType.Regex:
 					return Regex.Escape(s);
-				case oEncType.Code:
+				case EncType.Code:
 					return s.Replace(EncCode, true);
 			}
 			return s;
@@ -72,19 +72,19 @@ namespace orez.ostring.text {
 		/// <param name="s">Input string.</param>
 		/// <param name="typ">Decoding type.</param>
 		/// <returns>Decoded string.</returns>
-		public static string Decode(this string s, oEncType typ) {
+		public static string Decode(this string s, EncType typ) {
 			switch (typ) {
-				case oEncType.Html:
+				case EncType.Html:
 					return HttpUtility.HtmlDecode(s);
-				case oEncType.Url:
+				case EncType.Url:
 					return HttpUtility.UrlDecode(s);
-				case oEncType.Dos:
+				case EncType.Dos:
 					return s.Replace(EncDos, false);
-				case oEncType.Dose:
+				case EncType.Dose:
 					return s.Replace(EncDose, false);
-				case oEncType.Regex:
+				case EncType.Regex:
 					return Regex.Unescape(s);
-				case oEncType.Code:
+				case EncType.Code:
 					return s.Replace(EncCode, false);
 			}
 			return s;

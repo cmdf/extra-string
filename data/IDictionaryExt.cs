@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 
-namespace orez.ostring.data {
-	static class oIDictionaryExt {
+namespace App.data {
+	static class IDictionaryExt {
 
 		// extension methods
 		/// <summary>

@@ -1,9 +1,9 @@
-﻿namespace orez.ostring {
+﻿namespace App {
 
 	/// <summary>
 	/// Defines input parameters to ostring.
 	/// </summary>
-	class oParams {
+	class Params {
 		
 		/// <summary>
 		/// Tells the string function to be used.

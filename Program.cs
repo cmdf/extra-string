@@ -3,10 +3,10 @@ using System.IO;
 using System.Text;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
-using orez.ostring.data;
-using orez.ostring.text;
+using App.data;
+using App.text;
 
-namespace orez.ostring {
+namespace App {
 
 	/// <summary>
 	/// Please take me to the party...
@@ -38,10 +38,10 @@ namespace orez.ostring {
 		/// <summary>
 		/// Associates encoding name with encoding type enum.
 		/// </summary>
-		private static IDictionary<string, oEncType> EncTyp = new Dictionary<string, oEncType> {
-			["html"] = oEncType.Html, ["h"] = oEncType.Html, ["url"] = oEncType.Url, ["u"] = oEncType.Url,
-			["dos"] = oEncType.Dos, ["d"] = oEncType.Dos, ["dose"] = oEncType.Dose, ["e"] = oEncType.Dose,
-			["regex"] = oEncType.Regex, ["r"] = oEncType.Regex, ["code"] = oEncType.Code, ["c"] = oEncType.Code
+		private static IDictionary<string, EncType> EncTyp = new Dictionary<string, EncType> {
+			["html"] = EncType.Html, ["h"] = EncType.Html, ["url"] = EncType.Url, ["u"] = EncType.Url,
+			["dos"] = EncType.Dos, ["d"] = EncType.Dos, ["dose"] = EncType.Dose, ["e"] = EncType.Dose,
+			["regex"] = EncType.Regex, ["r"] = EncType.Regex, ["code"] = EncType.Code, ["c"] = EncType.Code
 		};
 
 		// methods
@@ -50,7 +50,7 @@ namespace orez.ostring {
 		/// </summary>
 		/// <param name="args">Input parameters.</param>
 		static void Main(string[] args) {
-			oParams p = GetOpt(args);
+			Params p = GetOpt(args);
 			if(StrFn.ContainsKey(p.fn))	StrFn[p.fn](p.input, p.args, p.regex);
 		}
 
@@ -59,8 +59,8 @@ namespace orez.ostring {
 		/// </summary>
 		/// <param name="args">Input arguments.</param>
 		/// <returns>Input options.</returns>
-		private static oParams GetOpt(string[] args) {
-			oParams p = new oParams();
+		private static Params GetOpt(string[] args) {
+			Params p = new Params();
 			for(int i = 0; i < args.Length; i++) {
 				switch(args[i]) {
 					case "--regex":
@@ -190,7 +190,7 @@ namespace orez.ostring {
 		/// <param name="p">type.</param>
 		/// <param name="re">NA.</param>
 		private static void Encode(string s, string[] p, bool re) {
-			oEncType t = EncTyp.GetDef(Str(p, 0));
+			EncType t = EncTyp.GetDef(Str(p, 0));
 			Print(s.Encode(t));
 		}
 		/// <summary>
@@ -200,7 +200,7 @@ namespace orez.ostring {
 		/// <param name="p">type.</param>
 		/// <param name="re">NA.</param>
 		private static void Decode(string s, string[] p, bool re) {
-			oEncType t = EncTyp.GetDef(Str(p, 0));
+			EncType t = EncTyp.GetDef(Str(p, 0));
 			Print(s.Decode(t));
 		}
 		/// <summary>
