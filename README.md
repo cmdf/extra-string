@@ -1,5 +1,5 @@
 Perform String Functions in the Windows Console.
-> 1. Download [exe file](https://github.com/winp/extra-string/releases/download/1.0.0/estring.exe).
+> 1. Download [exe file](https://github.com/cmdf/extra-string/releases/download/1.0.0/estring.exe).
 > 2. Copy to `C:\Program_Files\Scripts`.
 > 3. Add `C:\Program_Files\Scripts` to `PATH` environment variable.
 
@@ -403,4 +403,4 @@ Perform String Functions in the Windows Console.
 ```
 
 
-[![Merferry](https://i.imgur.com/UQxfzCk.jpg)](https://merferry.github.io)
+[![cmdf](https://i.imgur.com/UQxfzCk.jpg)](https://cmdf.github.io)
